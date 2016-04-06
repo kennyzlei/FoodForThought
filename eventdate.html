@@ -13,8 +13,10 @@
   <body>
     <header class="bar bar-nav">
       <button class="btn btn-link btn-nav pull-left">
-        <span class="icon icon-left-nav"></span>
-        Back
+        <a href="../eventname.html" data-transition="slide-out">
+          <span class="icon icon-left-nav"></span>
+          Back
+        </a>
       </button>
 
       <button class="btn btn-link btn-nav pull-right" >
@@ -27,12 +29,14 @@
     </header>
     
     <div class="content">
-      <form>
-        <h5 class="content-padded">What day?</h5>
-        <input type="text">
-        <h5 class="content-padded">What time?</h5>
-        <input type="text">
-      </form>
+      <div class="content-padded">
+        <form>
+          <h5>What day?</h5>
+          <input type="text">
+          <h5>What time?</h5>
+          <input type="text">
+        </form>
+      </div>
     </div>
   </body>
 </html>
