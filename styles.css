@@ -1,0 +1,21 @@
+#prof_pic {
+	width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+
+#center {
+	padding-top: 20px;
+	width: 100%;
+	text-align:center;
+}
+
+#down_arrow {
+	padding: 20px;
+	width: 100%;
+	text-align:center;
+}
+
+#search {
+	padding-top: 15px;
+}
