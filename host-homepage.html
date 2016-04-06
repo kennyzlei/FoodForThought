@@ -13,63 +13,68 @@
   <body>
 
     <header class="bar bar-nav">
-      <button class="btn btn-link btn-nav pull-left">
-        <span class="icon icon-left-nav"></span>
-        Profile
-      </button>
-      <button class="btn btn-link btn-nav pull-right">
-        Create Meal
-        <span class="icon icon-right-nav"></span>
-      </button>
+      <h1 class="title">Welcome Larry!</h1>
     </header>
+    
+    <nav class="bar bar-tab">
+      <a class="tab-item active" href="#">
+        <span class="icon icon-home"></span>
+        <span class="tab-label">Home</span>
+      </a>
+      <a class="tab-item" href="../hostprofile.html">
+        <span class="icon icon-person"></span>
+        <span class="tab-label">Profile</span>
+      </a>
+      <a class="tab-item" href="../eventname.html">
+        <span class="icon icon-plus"></span>
+        <span class="tab-label">New Meal</span>
+      </a>
+      <a class="tab-item" href="../index.html">
+        <span class="icon icon-stop"></span>
+        <span class="tab-label">Log Out</span>
+      </a>
+    </nav>
 
     <div class= "content">
-      <div class="content-padded">
-
-        <h2 style="position: relative; top: 20px; margin-left: auto; margin-right: auto; width: 4em;"> Your Upcoming Meals! </h2>
-
-        <div style="position: relative; top: 60px;">
-          <ul class="table-view">
-            <li class="table-view-cell media">
-              <a class="navigate-right">
-                <img class="media-object pull-left" src="http://placehold.it/42x42">
-                <div class="media-body">
-                  Item 1
-                  <p>
-                    Larry's Lunch @ 1:00
-                    March 15th
-                  </p>
-                </div>
-              </a>
-            </li>
-            <li class="table-view-cell media">
-              <a class="navigate-right">
-                <img class="media-object pull-left" src="http://placehold.it/42x42">
-                <div class="media-body">
-                  Item 1
-                  <p>
-                    Larry's Lunch @ 12:00
-                    March 16th
-                  </p>
-                </div>
-              </a>
-            </li>
-            <li class="table-view-cell media">
-              <a class="navigate-right">
-                <img class="media-object pull-left" src="http://placehold.it/42x42">
-                <div class="media-body">
-                  Item 1
-                  <p>
-                    Larry's @ 1:00
-                    March 17th
-                  </p>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-      </div>
+        <h5 class="content-padded">Upcoming Meals</h5>
+        <ul class="table-view">
+        <li class="table-view-cell media">
+            <a class="navigate-right">
+            <img class="media-object pull-left" src="http://placehold.it/42x42">
+            <div class="media-body">
+                Item 1
+                <p>
+                Larry's Lunch @ 1:00
+                March 15th
+                </p>
+            </div>
+            </a>
+        </li>
+        <li class="table-view-cell media">
+            <a class="navigate-right">
+            <img class="media-object pull-left" src="http://placehold.it/42x42">
+            <div class="media-body">
+                Item 1
+                <p>
+                Larry's Lunch @ 12:00
+                March 16th
+                </p>
+            </div>
+            </a>
+        </li>
+        <li class="table-view-cell media">
+            <a class="navigate-right">
+            <img class="media-object pull-left" src="http://placehold.it/42x42">
+            <div class="media-body">
+                Item 1
+                <p>
+                Larry's @ 1:00
+                March 17th
+                </p>
+            </div>
+            </a>
+        </li>
+        </ul>
     </div>
   </body>
 </html>
