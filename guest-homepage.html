@@ -7,76 +7,81 @@
 
     <link href="ratchet/css/ratchet.min.css" rel="stylesheet">
     <link href="ratchet/css/ratchet-theme-ios.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
     <script src="ratchet/js/ratchet.min.js"></script>
   </head>
 
   <body>
 
     <header class="bar bar-nav">
-      <button class="btn btn-link btn-nav pull-left">
-        <span class="icon icon-left-nav"></span>
-        Schedule
-      </button>
-      <button class="btn btn-link btn-nav pull-right">
-        Profile
-        <span class="icon icon-right-nav"></span>
-      </button>
+      <h1 class="title">Welcome Joe!</h1>
     </header>
+    
+    <nav class="bar bar-tab">
+      <a class="tab-item active" href="#">
+        <span class="icon icon-home"></span>
+        <span class="tab-label">Home</span>
+      </a>
+      <a class="tab-item" href="../guest-profile.html">
+        <span class="icon icon-person"></span>
+        <span class="tab-label">Profile</span>
+      </a>
+      <a class="tab-item" href="../guest-reservations.html">
+        <span class="icon icon-list"></span>
+        <span class="tab-label">Reservations</span>
+      </a>
+      <a class="tab-item" href="../index.html">
+        <span class="icon icon-stop"></span>
+        <span class="tab-label">Log Out</span>
+      </a>
+    </nav>
 
     <div class= "content">
       <div class="content-padded">
-
-        <h2 style="position: relative; top: 20px; margin-left: auto; margin-right: auto; width: 7em;"> Welcome Joe! </h2>
-        <div>
-          <button style="position: relative; top: 20px; margin-left: auto; margin-right: auto; width: 10em;" class="btn btn-positive btn-block">Preferences</button>
-        </div>
-        <h3 style="position: relative; top: 50px; margin-left: auto; margin-right: auto; width: 3em; text-decoration: underline;"> Meals </h3>
-
-        <div style="position: relative; top: 60px;">
-          <ul class="table-view">
-            <li class="table-view-cell media">
-              <a class="navigate-right">
-                <img class="media-object pull-left" src="http://placehold.it/42x42">
-                <div class="media-body">
-                  Item 1
-                  <p>
-                    Burgers With Joe @ 7:00
-                    March 15th
-                  </p>
-                  <button class="btn btn-positive btn-block">RSVP</button>
-                </div>
-              </a>
-            </li>
-            <li class="table-view-cell media">
-              <a class="navigate-right">
-                <img class="media-object pull-left" src="http://placehold.it/42x42">
-                <div class="media-body">
-                  Item 1
-                  <p>
-                    Burgers With Jim @ 8:00
-                    March 16th
-                  </p>
-                  <button class="btn btn-positive btn-block">RSVP</button>
-                </div>
-              </a>
-            </li>
-            <li class="table-view-cell media">
-              <a class="navigate-right">
-                <img class="media-object pull-left" src="http://placehold.it/42x42">
-                <div class="media-body">
-                  Item 1
-                  <p>
-                    Burgers With Josh @ 9:00
-                    March 17th
-                  </p>
-                  <button class="btn btn-positive btn-block">RSVP</button>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-
+        <input type="search" placeholder="Search">
       </div>
+      <h5 class="content-padded">Meals Nearby</h5>
+      <ul class="table-view">
+        <li class="table-view-cell media">
+            <a class="navigate-right">
+            <img class="media-object pull-left" src="http://placehold.it/42x42">
+            <div class="media-body">
+                Item 1
+                <p>
+                Burgers With Joe @ 7:00
+                March 15th
+                </p>
+                <button class="btn btn-positive">RSVP</button>
+            </div>
+            </a>
+        </li>
+        <li class="table-view-cell media">
+            <a class="navigate-right">
+            <img class="media-object pull-left" src="http://placehold.it/42x42">
+            <div class="media-body">
+                Item 1
+                <p>
+                Burgers With Jim @ 8:00
+                March 16th
+                </p>
+                <button class="btn btn-positive">RSVP</button>
+            </div>
+            </a>
+        </li>
+        <li class="table-view-cell media">
+            <a class="navigate-right">
+            <img class="media-object pull-left" src="http://placehold.it/42x42">
+            <div class="media-body">
+                Item 1
+                <p>
+                Burgers With Josh @ 9:00
+                March 17th
+                </p>
+                <button class="btn btn-positive">RSVP</button>
+            </div>
+            </a>
+        </li>
+      </ul>
     </div>
   </body>
 </html>

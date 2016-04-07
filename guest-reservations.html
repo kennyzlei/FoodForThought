@@ -6,25 +6,31 @@
     <title></title>
 
     <link href="ratchet/css/ratchet.min.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
     <link href="ratchet/css/ratchet-theme-ios.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
     <script src="ratchet/js/ratchet.min.js"></script>
   </head>
   
   <body>
     <header class="bar bar-nav">
       <button class="btn btn-link btn-nav pull-left">
-        <span class="icon icon-left-nav"></span>
-        Back
+        <a href="../guest-homepage.html" data-transition="slide-out">
+          <span class="icon icon-left-nav"></span>
+          Back
+        </a>
       </button>
       
-    	<h1 class="title">Scheduled Meals</h1>
+      <h1 class="title">Reservations</h1>
     </header>
     
     <div class="content">
-        <input type="search" placeholder="Search">
+        <div class="content-padded">
+            <input type="search" placeholder="Search">
+        </div>
+        <h5 class="content-padded">Upcoming Meals</h5>
         <ul class="table-view">
             <li class="table-view-cell media">
+                <a class="navigate-right" href="../guest-reservation-detail.html" data-transition="slide-in">
                     <img id="prof_pic" class="media-object pull-left" src="img/paula.jpg">
                         <div class="media-body">
                             Pizza Party
@@ -33,13 +39,13 @@
                             7:00 PM
                             </p>
                             <div>
-                                <button class="btn btn-primary">More</button>
                                 <button class="btn btn-negative">Cancel</button>
                             </div>
                         </div>
-                        
+                </a>      
             </li>
             <li class="table-view-cell media">
+                <a class="navigate-right">
                     <img id="prof_pic" class="media-object pull-left" src="img/alton.jpg">
                         <div class="media-body">
                             Burgers and Beer
@@ -48,13 +54,14 @@
                             5:30 PM
                             </p>
                             <div>
-                                <button class="btn btn-primary">More</button>
                                 <button class="btn btn-negative">Cancel</button>
                             </div>
                         </div>
+                    </a>
                         
             </li>
             <li class="table-view-cell media">
+                <a class="navigate-right">
                     <img id="prof_pic" class="media-object pull-left" src="img/bobby.jpg">
                         <div class="media-body">
                             Ribfest
@@ -63,11 +70,52 @@
                             6:00 PM
                             </p>
                             <div>
-                                <button class="btn btn-primary">More</button>
                                 <button class="btn btn-negative">Cancel</button>
                             </div>
                         </div>
+                </a>
                         
+            </li>
+        </ul>
+        
+        <h5 class="content-padded">Past Meals</h5>
+        <ul class="table-view">
+            <li class="table-view-cell media">
+                <a class="navigate-right">
+                    <img id="prof_pic" class="media-object pull-left" src="img/kenny.jpg">
+                        <div class="media-body">
+                            Lunch with Larry
+                            <p>
+                            March 29, 2016<br>
+                            Rating: 4.6/5<br>
+                            
+                            </p>
+                        </div>
+                        </a>
+            </li>
+            <li class="table-view-cell media">
+                <a class="navigate-right">
+                    <img id="prof_pic" class="media-object pull-left" src="img/anmol.jpg">
+                        <div class="media-body">
+                            Burgers with Bob
+                            <p>
+                            March 18, 2016<br>
+                            Rating: 4.8/5
+                            </p>
+                        </div>
+                        </a>
+            </li>
+            <li class="table-view-cell media">
+                <a class="navigate-right">
+                    <img id="prof_pic" class="media-object pull-left" src="img/donny.jpg">
+                        <div class="media-body">
+                            Nacho Average Guacamole
+                            <p>
+                            February 17, 2016<br>
+                            Rating: 5/5
+                            </p>
+                        </div>
+                        </a>
             </li>
         </ul>
     </div>
