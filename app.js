@@ -17,8 +17,7 @@ function loadStorage() {
                     "pic_url": "img/bbq.jpg",
                     "meal_time": "1:00 PM",
                     "meal_date": "April 15th",
-                    "location": "28 DeWolfe Street
-                    Cambridge, MA 02138",
+                    "location": "28 DeWolfe Street Cambridge, MA 02138",
                     "cost": 7,
                     "host": true,
                     "guest": true
