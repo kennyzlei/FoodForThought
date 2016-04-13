@@ -161,7 +161,7 @@ var checkPage = function(){
     if($("#guest-reservation-detail").length) {
         //addMealDetailsHTML();
         console.log("in here");
-        $("#backbutton").click(function() {
+        $("#back-button").click(function() {
             console.log("going back");
             history.go(-1);
         });
