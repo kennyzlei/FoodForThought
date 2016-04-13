@@ -10,49 +10,53 @@
     <link href="ratchet/css/ratchet-theme-ios.min.css" rel="stylesheet">
     <script src="ratchet/js/ratchet.min.js"></script>
   </head>
-  
-  <body id="guest-reservation-detail">
+
+  <body>
     <header class="bar bar-nav">
       <button class="btn btn-link btn-nav pull-left">
-        <a id="back-button">
+        <a href="../guest-reservations.html" data-transition="slide-out">
           <span class="icon icon-left-nav"></span>
           Back
         </a>
       </button>
-      
+
     	<h1 class="title">Pizza Party</h1>
     </header>
-    
+
     <div class="content">
         <ul class="table-view">
             <li class="table-view-cell media">
                     <img id="prof_pic" class="media-object pull-left" src="img/paula.jpg">
-                        <div class="media-body">
+                        <div id = "information" class="media-body">
                             Host: <br>Paula Dean
-                            <div> 
+                            <div>
                             <p> 2/5 RSVP's
                             </p>
                             </div>
                         </div>
-                        
             </li>
-            <li class="table-view-cell media">
+
+            <li id = "information5" class="table-view-cell media">
+            <p> Cost: </p>
+            </li>
+
+            <li id = "information2" class="table-view-cell media">
                 <p>
                 Paula is excited to make some authentic pizzas with her own homeade dough. Each person will be making their own personal pizza. Choose from 3 types of cheese!
                 </p>
             </li>
-            <li class="table-view-cell media">
+            <li id = "information3" class="table-view-cell media">
                     <p>
                             Date: April 15, 2016<br>
-                            Time: 7:00 PM 
+                            Time: 7:00 PM
                             </p>
-                        
+
             </li>
-            <li class="table-view-cell media">
+            <li id = "information4" class="table-view-cell media">
                 <p> Location: <br>
                     28 DeWolfe Street<br>
                     Cambridge, MA 02138
-                        
+                </p>
             </li>
         </ul>
         <button class="btn btn-negative btn-block">Cancel RSVP</button>
