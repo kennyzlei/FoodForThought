@@ -140,11 +140,11 @@ function addMealDetailsHTML(){
     $('#information').append(mealdetails);
     var mealdetails2 = '<p>' + meal["meal_details"] + '</p>';
     $('#information2').append(mealdetails2);
-    var mealdetails3 = '<p>' + meal["date"] + '<br>' + meal["meal_time"] + '</p>';
+    var mealdetails3 = '<p>' + meal["meal_date"] + '<br>' + meal["meal_time"] + '</p>';
     $('#information3').append(mealdetails3);
-    var mealdetails4 = '<p> Location: <br>' + meal["location"] + '</p>';
+    var mealdetails4 = '<p> Location: ' + meal["location"] + '</p>';
     $('#information4').append(mealdetails4);
-    var mealdetails5 = '<p> Cost:' + meal["cost"] + '</p>';
+    var mealdetails5 = '<p> Cost: $' + meal["cost"] + '</p>';
     $('#information5').append(mealdetails5);
     $('#prof_pic').attr("src", meal["pic_url"]);
 }
