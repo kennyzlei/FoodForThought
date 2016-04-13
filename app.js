@@ -137,6 +137,11 @@ function addMeal() {
     syncStorage();
 }
 
+function getCurrentMealID() {
+    var meal_id = parseInt(localStorage.getItem("current_meal_id"));
+    return meal_id;
+}
+
 // when html document is loaded
 $(document).ready(function() {
     checkPage();
@@ -167,8 +172,12 @@ window.addEventListener('push', checkPage);
 
 $(document).on("click", ".navigate-right", function(){
     var current_meal_id = $(this).parent().attr("meal_id");
-    console.log("Current Meal ID: "+current_meal_id);
     localStorage.setItem("current_meal_id", current_meal_id);
     
     window.location.href = "../guest-reservation-detail.html";
+});
+
+$(document).on("click", "#back-button", function(){
+    console.log("going back");
+    history.back();
 });
