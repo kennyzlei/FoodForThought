@@ -193,7 +193,7 @@ function toggleMeal() {
 
 function addMeal() {
     // grab details from localStorage
-    var value = JSON.parse(localStorage.getItem("newmeal"));
+    var value = JSON.parse(JSON.stringify(localStorage.getItem("newmeal")));
     addMealHTML(value);
     meals["upcoming"].push(value);
     syncStorage();
@@ -220,11 +220,12 @@ function addMealCategories() {
     var items = categories.getElementsByTagName("li");
 
     var choices = {};
-    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
+    var newmeal = JSON.parse(JSON.stringify(localStorage.getItem("newmeal")));
+    console.log(newmeal);
     // search through list items and see if an active toggle exists
     for(var i = 0; i < items.length; i++) {
         var x = items[i].getElementsByTagName("div");
-        if(x.toggle.active.length) {
+        if(x[0].classList.contains("active")) {
             choices[i] = 0;
         } else {
             choices[i] = 1;
@@ -241,7 +242,7 @@ function addMealTime() {
     var date_input = document.getElementById("meal_day");
     var time_input = document.getElementById("meal_time");
 
-    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
+    var newmeal = JSON.parse(JSON.stringify(localStorage.getItem("newmeal")));
 
     newmeal["meal_date"] = date_input.value;
     newmeal["meal_time"] = time_input.value;
@@ -255,7 +256,7 @@ function addGuestInfo() {
     var guest_input = document.getElementById("num_guests");
     var cost_input = document.getElementById("guest_cost");
 
-    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
+    var newmeal = JSON.parse(JSON.stringify(localStorage.getItem("newmeal")));
 
     newmeal["num_guests"] = guest_input.value;
     newmeal["cost"] = cost_input.value;
