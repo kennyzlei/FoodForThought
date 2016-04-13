@@ -199,6 +199,65 @@ function addMeal() {
     syncStorage();
 }
 
+// create newmeal object 
+function addNMealName() {
+    var name_input = document.getElementById("meal_name");
+    var desc_input = document.getElementById("meal_description");
+    
+    var newmeal = {};
+    newmeal["meal_name"] = name_input.value;
+    newmeal["meal_details"] = desc_input.value;
+
+    localStorage.setItem("newmeal");
+}
+
+// add food categories to newmeal object
+function addMealCategories() {
+    var categories = document.getElementById("categories_list");
+    var items = categories.getElementsByTagName("li");
+
+    var choices = {};
+    var newmeal = localStorage.getItem("newmeal");
+    // search through list items and see if an active toggle exists
+    for(var i = 0; i < items.length; i++) {
+        var x = items[i].getElementsByTagName("div");
+        if(x.toggle.active.length) {
+            choices[i] = 0;
+        } else {
+            choices[i] = 1;
+        }
+    }
+
+    newmeal["meal_categories"] = choices;
+    localStorage.setItem("newmeal");
+}
+
+// add date and time of event to newmeal object
+function addMealTime() {
+    var date_input = document.getElementById("meal_day");
+    var time_input = document.getElementById("meal_time");
+
+    var newmeal = localStorage.getItem("newmeal");
+
+    newmeal["meal_date"] = date_input.value;
+    newmeal["meal_time"] = time_input.value;
+
+    localStorage.setItem("newmeal");
+}
+
+// add number of guests and cost per guest
+function addGuestInfo() {
+    var guest_input = document.getElementById("num_guests");
+    var cost_input = document.getElementById("guest_cost");
+
+    var newmeal = localStorage.getItem("newmeal");
+
+    newmeal["num_guests"] = guest_input.value;
+    newmeal["cost"] = cost_input.value;
+
+    localStorage.setItem("newmeal");
+}
+
 function getCurrentMealID() {
     var meal_id = parseInt(localStorage.getItem("current_meal_id"));
     return meal_id;
