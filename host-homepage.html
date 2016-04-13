@@ -10,6 +10,7 @@
     <link href="styles.css" rel="stylesheet">
     <script src="ratchet/js/ratchet.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script>var pagename = "host-homepage"</script>
     <script src="app.js"></script>
   </head>
 
@@ -40,41 +41,11 @@
 
     <div class= "content">
         <h5 class="content-padded">Upcoming Meals</h5>
-        <ul class="table-view">
-        <li class="table-view-cell media">
-            <a class="navigate-right">
-            <img id="prof_pic" class="media-object pull-left" src="img/bbq.jpg">
-            <div class="media-body">
-                BBQ with Larry
-                <p>1:00 PM</p>
-                <p>April 15th</p>
-            </div>
-            </a>
-        </li>
-        <li class="table-view-cell media">
-            <a class="navigate-right">
-            <img id="prof_pic" class="media-object pull-left" src="img/mixology.jpg">
-            <div class="media-body">
-                Happy Hour at Larry's Crib
-                <p>12:00 PM</p>
-                <p>April 16th</p>
-            </div>
-            </a>
-        </li>
-        <li class="table-view-cell media">
-            <a class="navigate-right">
-            <img id="prof_pic" class="media-object pull-left" src="img/burger.jpg">
-            <div class="media-body">
-                Burgers with Larry
-                <p>1:00 PM</p>
-                <p>April 17th</p>
-            </div>
-            </a>
-        </li>
+        <ul class="table-view" id="upcoming">
         </ul>
         
         <h5 class="content-padded">Past Meals</h5>
-        <ul class="table-view">
+        <ul class="table-view" id="past">
             <li class="table-view-cell media">
                 <a class="navigate-right">
                     <img id="prof_pic" class="media-object pull-left" src="img/group.png">
