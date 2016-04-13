@@ -65,12 +65,21 @@ function loadStorage() {
                 },
                 {
                     "meal_id": 7,
+                    "meal_name": "Learn How to California Roll",
+                    "pic_url": "img/sushi.jpg",
+                    "meal_time": "6:30 PM",
+                    "meal_date": "April 21st",
+                    "host": false,
+                    "guest": false
+                },
+                {
+                    "meal_id": 8,
                     "meal_name": "Ribfest",
                     "pic_url": "img/bobby.jpg",
                     "meal_time": "6:00 PM",
                     "meal_date": "May 1st",
                     "host": false,
-                    "guest": true
+                    "guest": false
                 },
             ]
         }
@@ -82,7 +91,9 @@ function loadGuest() {
     var upcoming = meals["upcoming"];
     
     $.each(upcoming, function(key, value) {
-        addMealHTML(value);
+        if (value["guest"] == false) {
+            addMealHTML(value);
+        }
     });
 }
 
