@@ -157,3 +157,11 @@ var checkPage = function(){
 
 // when html page is changed, known as pushed
 window.addEventListener('push', checkPage);
+
+$(document).on("click", ".navigate-right", function(){
+    var current_meal_id = $(this).parent().attr("meal_id");
+    console.log("Current Meal ID: "+current_meal_id);
+    localStorage.setItem("current_meal_id", current_meal_id);
+    
+    window.location.href = "../guest-reservation-detail.html";
+});
