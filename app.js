@@ -10,7 +10,7 @@ function loadStorage() {
         meals = {
             "upcoming": [
                 {
-                    "meal_id": 1,
+                    "meal_id": 0,
                     "meal_name": "Larry's BBQ",
                     "pic_url": "img/bbq.jpg",
                     "meal_time": "1:00 PM",
@@ -19,7 +19,7 @@ function loadStorage() {
                     "guest": true
                 },
                 {
-                    "meal_id": 2,
+                    "meal_id": 1,
                     "meal_name": "Pizza Party",
                     "pic_url": "img/paula.jpg",
                     "meal_time": "7:00 PM",
@@ -28,7 +28,7 @@ function loadStorage() {
                     "guest": true
                 },
                 {
-                    "meal_id": 3,
+                    "meal_id": 2,
                     "meal_name": "Chicken Gumbo with Jim",
                     "pic_url": "img/chicken-gumbo.jpg",
                     "meal_time": "7:00 PM",
@@ -37,7 +37,7 @@ function loadStorage() {
                     "guest": false
                 },
                 {
-                    "meal_id": 4,
+                    "meal_id": 3,
                     "meal_name": "Happy Hour at Larry's Crib",
                     "pic_url": "img/mixology.jpg",
                     "meal_time": "12:00 PM",
@@ -46,7 +46,7 @@ function loadStorage() {
                     "guest": false
                 },
                 {
-                    "meal_id": 5,
+                    "meal_id": 4,
                     "meal_name": "Pad Thai with Lisa",
                     "pic_url": "img/pad-thai.jpg",
                     "meal_time": "9:00 PM",
@@ -55,7 +55,7 @@ function loadStorage() {
                     "guest": true
                 },
                 {
-                    "meal_id": 6,
+                    "meal_id": 5,
                     "meal_name": "Burgers with Joe",
                     "pic_url": "img/burger.jpg",
                     "meal_time": "1:00 PM",
@@ -64,7 +64,7 @@ function loadStorage() {
                     "guest": false
                 },
                 {
-                    "meal_id": 7,
+                    "meal_id": 6,
                     "meal_name": "Learn How to California Roll",
                     "pic_url": "img/sushi.jpg",
                     "meal_time": "6:30 PM",
@@ -73,7 +73,7 @@ function loadStorage() {
                     "guest": false
                 },
                 {
-                    "meal_id": 8,
+                    "meal_id": 7,
                     "meal_name": "Ribfest",
                     "pic_url": "img/bobby.jpg",
                     "meal_time": "6:00 PM",
@@ -157,6 +157,9 @@ var checkPage = function(){
     }
     if($("#guest-reservations").length) {
         loadGuestReservations();
+    }
+    if($("#guest-reservation-detail").length) {
+        addMealDetailsHTML();
     }
 };
 
