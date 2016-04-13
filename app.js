@@ -181,7 +181,12 @@ var checkPage = function(){
         loadGuestReservations();
     }
     if($("#guest-reservation-detail").length) {
-        addMealDetailsHTML();
+        //addMealDetailsHTML();
+        console.log("in here");
+        $("#back-button").click(function() {
+            console.log("going back");
+            history.go(-1);
+        });
     }
 };
 
@@ -195,9 +200,4 @@ $(document).on("click", ".navigate-right", function(){
     localStorage.setItem("current_meal_id", current_meal_id);
 
     window.location.href = "../guest-reservation-detail.html";
-});
-
-$(document).on("click", "#back-button", function(){
-    console.log("going back");
-    history.back();
 });
