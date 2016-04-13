@@ -136,13 +136,13 @@ function addMealHTML(value) {
 function addMealDetailsHTML(){
     var meal = meals["upcoming"][getCurrentMealID()];
     $('.title').append(meal["meal_name"]);
-    var mealdetails = 'Host:' + '<br>' + meal["host_name"] + "<div> <p> 2/5 RSVP's </p> </div>";
+    var mealdetails = 'Host: ' + meal["host_name"] + "<div> <p> 2/5 RSVP's </p> </div>";
     $('#information').append(mealdetails);
     var mealdetails2 = '<p>' + meal["meal_details"] + '</p>';
     $('#information2').append(mealdetails2);
     var mealdetails3 = '<p>' + meal["meal_date"] + '<br>' + meal["meal_time"] + '</p>';
     $('#information3').append(mealdetails3);
-    var mealdetails4 = '<p> Location: ' + meal["location"] + '</p>';
+    var mealdetails4 = '<p> Location: <br>' + meal["location"] + '</p>';
     $('#information4').append(mealdetails4);
     var mealdetails5 = '<p> Cost: $' + meal["cost"] + '</p>';
     $('#information5').append(mealdetails5);
