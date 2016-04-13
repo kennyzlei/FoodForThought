@@ -11,10 +11,15 @@ function loadStorage() {
             "upcoming": [
                 {
                     "meal_id": 0,
+                    "host_name": "Larry Sanders",
                     "meal_name": "Larry's BBQ",
+                    "meal_details": "amazing meal",
                     "pic_url": "img/bbq.jpg",
                     "meal_time": "1:00 PM",
                     "meal_date": "April 15th",
+                    "location": "28 DeWolfe Street
+                    Cambridge, MA 02138",
+                    "cost": 7,
                     "host": true,
                     "guest": true
                 },
@@ -129,6 +134,23 @@ function addMealHTML(value) {
     $("#upcoming").append(newmeal);
 }
 
+function addMealDetailsHTML(){
+    var meal = meals["upcoming"][getCurrentMealID()];
+    $('.title').apppend(meal["meal_name"]);
+    var mealdetails = 'Host:' + '<br>' + meal["host_name"] + "<div> <p> 2/5 RSVP's </p> </div>";
+    $('#information').append(mealdetails);
+    var mealdetails2 = '<p>' + meal["meal_details"] + '</p>';
+    $('#information2').append(mealdetails2);
+    var mealdetails3 = '<p>' + meal["date"] + '<br>' + meal["meal_time"] + '</p>';
+    $('#information3').append(mealdetails3);
+    var mealdetails4 = '<p> Location: <br>' + meal["location"] + '</p>';
+    $('#information4').append(mealdetails4);
+    var mealdetails5 = '<p> Cost:' + meal["cost"] + '</p>';
+    $('#information5').append(mealdetails5);
+    $('#prof_pic').attr("src", meal["pic_url"]);
+}
+
+
 function addMeal() {
     // grab details from localStorage
     var value = JSON.parse(localStorage.getItem("newmeal"));
@@ -159,8 +181,7 @@ var checkPage = function(){
         loadGuestReservations();
     }
     if($("#guest-reservation-detail").length) {
-        //addMealDetailsHTML();
-        console.log("in here");
+        addMealDetailsHTML();
         $("#back-button").click(function() {
             console.log("going back");
             history.go(-1);
@@ -176,6 +197,6 @@ window.addEventListener('push', checkPage);
 $(document).on("click", ".navigate-right", function(){
     var current_meal_id = $(this).parent().attr("meal_id");
     localStorage.setItem("current_meal_id", current_meal_id);
-    
+
     window.location.href = "../guest-reservation-detail.html";
 });
