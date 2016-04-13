@@ -3,21 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
-
     <link href="ratchet/css/ratchet.min.css" rel="stylesheet">
     <link href="ratchet/css/ratchet-theme-ios.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
     <script src="ratchet/js/ratchet.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src="app.js"></script>
+    <script type="text/javascript" src="popup.js"></script>
+
   </head>
 
   <body>
     <header class="bar bar-nav">
       <h1 class="title">Welcome Joe!</h1>
     </header>
-    
+
     <nav class="bar bar-tab">
       <a class="tab-item active" href="#">
         <span class="icon icon-home"></span>
@@ -42,8 +44,21 @@
         <a class="btn btn-block" href="../guest-preferences.html" data-transition="slide-in">Preferences</a>
       </div>
       <h5 class="content-padded">Meals Nearby</h5>
+
       <ul class="table-view" id="upcoming">
+
       </ul>
     </div>
+
+<!--This is the popup for when you click the RSVP buttons-->
+    <div id="hello" title="Confirmation">
+      <p>
+        <font face="Georgia" size="4">
+        Would you like to confirm this Reservation for $___?
+        </font>
+      </p>
+      <button class="btn btn-positive">Yes</button>
+    </div>
+
   </body>
 </html>

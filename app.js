@@ -89,7 +89,7 @@ function loadStorage() {
 // call this if its the guest homepage
 function loadGuest() {
     var upcoming = meals["upcoming"];
-    
+
     $.each(upcoming, function(key, value) {
         if (value["guest"] == false) {
             addMealHTML(value);
@@ -100,7 +100,7 @@ function loadGuest() {
 // call this if its the guest reservations page
 function loadGuestReservations() {
     var upcoming = meals["upcoming"];
-    
+
     $.each(upcoming, function(key, value) {
         if (value["guest"] == true) {
             addMealHTML(value);
@@ -153,7 +153,14 @@ var checkPage = function(){
     if($("#guest-reservations").length) {
         loadGuestReservations();
     }
+    
+    $( "#hello" ).dialog({ autoOpen: false });
+    $( ".say_it" ).click(function() {
+    $( "#hello" ).dialog( "open" );
+    });
 };
+
+
 
 // when html page is changed, known as pushed
 window.addEventListener('push', checkPage);
