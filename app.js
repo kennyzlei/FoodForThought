@@ -197,10 +197,12 @@ function addMeal() {
     addMealHTML(value);
     meals["upcoming"].push(value);
     syncStorage();
+
+    window.location.href = "host-homepage.html"
 }
 
 // create newmeal object 
-function addNMealName() {
+function addMealName() {
     var name_input = document.getElementById("meal_name");
     var desc_input = document.getElementById("meal_description");
     
@@ -208,7 +210,8 @@ function addNMealName() {
     newmeal["meal_name"] = name_input.value;
     newmeal["meal_details"] = desc_input.value;
 
-    localStorage.setItem("newmeal");
+    localStorage.setItem("newmeal", newmeal);
+    window.location.href = "host-create-categories.html";
 }
 
 // add food categories to newmeal object
@@ -217,7 +220,7 @@ function addMealCategories() {
     var items = categories.getElementsByTagName("li");
 
     var choices = {};
-    var newmeal = localStorage.getItem("newmeal");
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
     // search through list items and see if an active toggle exists
     for(var i = 0; i < items.length; i++) {
         var x = items[i].getElementsByTagName("div");
@@ -229,7 +232,8 @@ function addMealCategories() {
     }
 
     newmeal["meal_categories"] = choices;
-    localStorage.setItem("newmeal");
+    localStorage.setItem("newmeal", newmeal);
+    window.location.href = "host-create-date.html";
 }
 
 // add date and time of event to newmeal object
@@ -237,12 +241,13 @@ function addMealTime() {
     var date_input = document.getElementById("meal_day");
     var time_input = document.getElementById("meal_time");
 
-    var newmeal = localStorage.getItem("newmeal");
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
 
     newmeal["meal_date"] = date_input.value;
     newmeal["meal_time"] = time_input.value;
 
-    localStorage.setItem("newmeal");
+    localStorage.setItem("newmeal", newmeal);
+    window.location.href = "host-create-guests.html";
 }
 
 // add number of guests and cost per guest
@@ -250,12 +255,13 @@ function addGuestInfo() {
     var guest_input = document.getElementById("num_guests");
     var cost_input = document.getElementById("guest_cost");
 
-    var newmeal = localStorage.getItem("newmeal");
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
 
     newmeal["num_guests"] = guest_input.value;
     newmeal["cost"] = cost_input.value;
 
-    localStorage.setItem("newmeal");
+    localStorage.setItem("newmeal", newmeal);
+    window.location.href = "host-create-summary.html";
 }
 
 function getCurrentMealID() {
