@@ -175,8 +175,21 @@ function addMealDetailsHTML(){
     var mealdetails5 = '<p> Cost: $' + meal["cost"] + '</p>';
     $('#information5').append(mealdetails5);
     $('#prof_pic').attr("src", meal["pic_url"]);
+    
+    var rsvpbutton;
+    if (meal["guest"] == true) {
+        rsvpbutton = '<button class="btn btn-negative btn-block">Cancel</button>';
+    } else {
+        rsvpbutton = '<button class="btn btn-positive btn-block">RSVP</button>';
+    }
+    $("#rsvp-cancel").append(rsvpbutton);
 }
 
+function toggleMeal() {
+    meals["upcoming"][getCurrentMealID()]["guest"] ^= true;
+    syncStorage();
+    history.go(-1);
+}
 
 function addMeal() {
     // grab details from localStorage
@@ -213,6 +226,9 @@ var checkPage = function(){
             console.log("going back");
             history.go(-1);
         });
+        $("#rsvp-cancel").click(function() {
+            toggleMeal();
+        })
     }
 };
 
