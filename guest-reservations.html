@@ -9,6 +9,8 @@
     <link href="ratchet/css/ratchet-theme-ios.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
     <script src="ratchet/js/ratchet.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="app.js"></script>
   </head>
   
   <body>
@@ -23,59 +25,12 @@
       <h1 class="title">Reservations</h1>
     </header>
     
-    <div class="content">
+    <div class="content" id="guest-reservations">
         <div class="content-padded">
             <input type="search" placeholder="Search">
         </div>
         <h5 class="content-padded">Upcoming Meals</h5>
-        <ul class="table-view">
-            <li class="table-view-cell media">
-                <a class="navigate-right" href="../guest-reservation-detail.html" data-transition="slide-in">
-                    <img id="prof_pic" class="media-object pull-left" src="img/paula.jpg">
-                        <div class="media-body">
-                            Pizza Party
-                            <p>
-                            April 15, 2016<br>
-                            7:00 PM
-                            </p>
-                            <div>
-                                <button class="btn btn-negative">Cancel</button>
-                            </div>
-                        </div>
-                </a>      
-            </li>
-            <li class="table-view-cell media">
-                <a class="navigate-right">
-                    <img id="prof_pic" class="media-object pull-left" src="img/alton.jpg">
-                        <div class="media-body">
-                            Burgers and Beer
-                            <p>
-                            April 22, 2016<br>
-                            5:30 PM
-                            </p>
-                            <div>
-                                <button class="btn btn-negative">Cancel</button>
-                            </div>
-                        </div>
-                    </a>
-                        
-            </li>
-            <li class="table-view-cell media">
-                <a class="navigate-right">
-                    <img id="prof_pic" class="media-object pull-left" src="img/bobby.jpg">
-                        <div class="media-body">
-                            Ribfest
-                            <p>
-                            June, 2016<br>
-                            6:00 PM
-                            </p>
-                            <div>
-                                <button class="btn btn-negative">Cancel</button>
-                            </div>
-                        </div>
-                </a>
-                        
-            </li>
+        <ul class="table-view" id="upcoming">
         </ul>
         
         <h5 class="content-padded">Past Meals</h5>

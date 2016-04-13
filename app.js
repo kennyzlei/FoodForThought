@@ -20,21 +20,57 @@ function loadStorage() {
                 },
                 {
                     "meal_id": 2,
+                    "meal_name": "Pizza Party",
+                    "pic_url": "img/paula.jpg",
+                    "meal_time": "7:00 PM",
+                    "meal_date": "April 15th",
+                    "host": false,
+                    "guest": true
+                },
+                {
+                    "meal_id": 3,
+                    "meal_name": "Chicken Gumbo with Jim",
+                    "pic_url": "img/chicken-gumbo.jpg",
+                    "meal_time": "7:00 PM",
+                    "meal_date": "April 16th",
+                    "host": false,
+                    "guest": false
+                },
+                {
+                    "meal_id": 4,
                     "meal_name": "Happy Hour at Larry's Crib",
                     "pic_url": "img/mixology.jpg",
                     "meal_time": "12:00 PM",
-                    "meal_date": "April 16th",
+                    "meal_date": "April 17th",
                     "host": true,
                     "guest": false
                 },
                 {
-                    "meal_id": 3,
-                    "meal_name": "Burgers with Larry",
+                    "meal_id": 5,
+                    "meal_name": "Pad Thai with Lisa",
+                    "pic_url": "img/pad-thai.jpg",
+                    "meal_time": "9:00 PM",
+                    "meal_date": "April 17th",
+                    "host": false,
+                    "guest": true
+                },
+                {
+                    "meal_id": 6,
+                    "meal_name": "Burgers with Joe",
                     "pic_url": "img/burger.jpg",
                     "meal_time": "1:00 PM",
-                    "meal_date": "April 17th",
-                    "host": true,
+                    "meal_date": "April 19th",
+                    "host": false,
                     "guest": false
+                },
+                {
+                    "meal_id": 7,
+                    "meal_name": "Ribfest",
+                    "pic_url": "img/bobby.jpg",
+                    "meal_time": "6:00 PM",
+                    "meal_date": "May 1st",
+                    "host": false,
+                    "guest": true
                 },
             ]
         }
@@ -47,6 +83,17 @@ function loadGuest() {
     
     $.each(upcoming, function(key, value) {
         addMealHTML(value);
+    });
+}
+
+// call this if its the guest reservations page
+function loadGuestReservations() {
+    var upcoming = meals["upcoming"];
+    
+    $.each(upcoming, function(key, value) {
+        if (value["guest"] == true) {
+            addMealHTML(value);
+        }
     });
 }
 
@@ -72,14 +119,14 @@ function addMealHTML(value) {
 }
 
 function addMeal() {
-    //grab details from localStorage
+    // grab details from localStorage
     var value = JSON.parse(localStorage.getItem("newmeal"));
     addMealHTML(value);
     meals["upcoming"].push(value);
     syncStorage();
 }
 
-//when html document is loaded
+// when html document is loaded
 $(document).ready(function() {
     checkPage();
 });
@@ -92,6 +139,10 @@ var checkPage = function(){
     if($("#guest-homepage").length) {
         loadGuest();
     }
+    if($("#guest-reservations").length) {
+        loadGuestReservations();
+    }
 };
 
+// when html page is changed, known as pushed
 window.addEventListener('push', checkPage);
