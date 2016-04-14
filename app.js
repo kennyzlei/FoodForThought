@@ -297,12 +297,43 @@ function loadMealSummary() {
     $("#title").append(newmeal["meal_title"]);
     $("#time").append(newmeal["meal_date"] + " @ " + newmeal["meal_time"]);
     $("#guests").append("for " + newmeal["num_guests"] + " guests");
-    $("#costs").append("x $" + newmeal["meal_time"] + " per person");
+    $("#costs").append("x $" + newmeal["cost"] + " per person");
 
     var total = parseInt(newmeal["num_guests"]) * parseInt(newmeal["cost"])
     $("#total").append("= $" + total + " to spend");
 }
 
+function loadHostMealName() {
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
+    $("#meal_name").attr("value", newmeal["meal_name"]);
+    $("#meal_description").append(newmeal["meal_details"]);
+}
+
+function loadHostMealCategories() {
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
+    var list = newmeal["meal_categories"];
+    var table = document.getElementById("categories_list");
+    var items = table.getElementsByTagName("li")
+
+    for(var i = 0; i < list.length; i++) {
+        var x = items[i].getElementsByTagName("div");
+        if(list[i]) {
+            x[0].classList.add("active");
+        }
+    }
+}
+
+function loadHostMealDate() {
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
+    $("#meal_day").attr("value", newmeal["meal_date"]);
+    $("#meal_time").attr("value", newmeal["meal_time"]);
+}
+
+function loadHostGuestInfo() {
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
+    $("#num_guests").val(newmeal["num_guests"]);
+    $("#guest_cost").val(newmeal["cost"]);
+}
 
 function getCurrentMealID() {
     var meal_id = parseInt(localStorage.getItem("current_meal_id"));
@@ -348,6 +379,18 @@ var checkPage = function(){
     }
     if($("#host-create-summary").length) {
         loadMealSummary();
+    }
+    if($("#host-create-name").length) {
+       loadHostMealName(); 
+    }
+    if($("#host-create-categories").length) {
+        loadHostMealCategories();
+    }
+    if($("#host-create-date").length) {
+        loadHostMealDate();
+    }
+    if($("#host-create-guests").length) {
+        loadHostGuestInfo();
     }
 };
 
