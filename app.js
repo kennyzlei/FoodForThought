@@ -165,15 +165,15 @@ function addMealDetailsHTML(){
     var meal = meals["upcoming"][getCurrentMealID()];
     $('.title').append(meal["meal_name"]);
     var mealdetails = 'Host: ' + meal["host_name"] + "<div> <p> 2/5 RSVP's </p> </div>";
-    $('#information').append(mealdetails);
+    $('#heading').append(mealdetails);
     var mealdetails2 = '<p>' + meal["meal_details"] + '</p>';
-    $('#information2').append(mealdetails2);
+    $('#meal_description').append(mealdetails2);
     var mealdetails3 = '<p>' + meal["meal_date"] + '<br>' + meal["meal_time"] + '</p>';
-    $('#information3').append(mealdetails3);
+    $('#meal_time').append(mealdetails3);
     var mealdetails4 = '<p> Location: <br>' + meal["location"] + '</p>';
-    $('#information4').append(mealdetails4);
+    $('#meal_location').append(mealdetails4);
     var mealdetails5 = '<p> Cost: $' + meal["cost"] + '</p>';
-    $('#information5').append(mealdetails5);
+    $('#meal_cost').append(mealdetails5);
     $('#prof_pic').attr("src", meal["pic_url"]);
     
     if (getIfHost() == false) {
@@ -213,11 +213,11 @@ function addMeal() {
     window.location.href = "host-homepage.html"
 }
 
-// create newmeal object 
+// create newmeal object
 function addMealName() {
     var name_input = document.getElementById("meal_name");
     var desc_input = document.getElementById("meal_description");
-    
+
     var newmeal = {"meal_name":"",
     "meal_details":"",
     "meal_categories":{},
@@ -350,8 +350,6 @@ var checkPage = function(){
         loadMealSummary();
     }
 };
-
-
 
 // when html page is changed, known as pushed
 window.addEventListener('push', checkPage);
