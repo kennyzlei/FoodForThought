@@ -151,6 +151,20 @@ function loadHost() {
     });
 }
 
+// load all the details for host to confirm
+function loadMealSummary() {
+
+    var newmeal = JSON.parse(JSON.stringify(localStorage.getItem("newmeal")));
+
+    $("#title").append(newmeal["meal_title"]);
+    $("#time").append(newmeal["meal_date"] + " @ " + newmeal["meal_time"]);
+    $("#guests").append("for " + newmeal["num_guests"] + " guests");
+    $("#costs").append("x $" + newmeal["meal_time"] + " per person");
+
+    var total = parseInt(newmeal["num_guests"]) * parseInt(newmeal["cost"])
+    $("#total").append("= $" + total + " to spend");
+}
+
 function addMealHTML(value) {
     var newmeal = $('<li class="table-view-cell media" meal_id="'+value["meal_id"]+'"/>');
     newmeal.html('<a class="navigate-right">'+
@@ -198,6 +212,7 @@ function addMeal() {
     meals["upcoming"].push(value);
     syncStorage();
 
+    localStorage.removeItem("newmeal");
     window.location.href = "host-homepage.html"
 }
 
@@ -230,6 +245,7 @@ function addMealCategories() {
         } else {
             choices[i] = 1;
         }
+        console.log(choices[i]);
     }
 
     newmeal["meal_categories"] = choices;
@@ -244,6 +260,7 @@ function addMealTime() {
 
     var newmeal = JSON.parse(JSON.stringify(localStorage.getItem("newmeal")));
 
+    console.log(date_input.value);
     newmeal["meal_date"] = date_input.value;
     newmeal["meal_time"] = time_input.value;
 
@@ -295,6 +312,9 @@ var checkPage = function(){
         $("#rsvp-cancel").click(function() {
             toggleMeal();
         })
+    }
+    if($("#host-create-summary").length) {
+        loadMealSummary();
     }
 };
 
