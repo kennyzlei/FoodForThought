@@ -8,6 +8,8 @@
     <link href="ratchet/css/ratchet.min.css" rel="stylesheet">
     <link href="ratchet/css/ratchet-theme-ios.min.css" rel="stylesheet">
     <script src="ratchet/js/ratchet.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="app.js"></script>
   </head>
   
   <body>
@@ -23,14 +25,14 @@
     </header>
     
     <div class="content">
-      <div class="content-padded" style="text-align:center;">
-        <h4>Larry's Lunch</h4>
-        <h5>Monday, March 15 @ 7PM</h5>
-        <h5>for 5 guests</h5>
-        <h5>x $7 per person</h5>
-        <h5>= $35 to spend</h5>
+      <div id="host-create-summary" class="content-padded" style="text-align:center;">
+        <h4 id="title"></h4>
+        <h5 id="time"></h5>
+        <h5 id="guests"></h5>
+        <h5 id="costs"></h5>
+        <h5 id="total"></h5>
         <h5>
-        <a class="btn btn-primary btn-block" href="../host-homepage.html" data-transition="fade">Confirm</a>
+        <a class="btn btn-primary btn-block" href="javascript:addMeal()" data-transition="fade">Confirm</a>
       </div>
     </div>
   </body>

@@ -8,6 +8,8 @@
     <link href="ratchet/css/ratchet.min.css" rel="stylesheet">
     <link href="ratchet/css/ratchet-theme-ios.min.css" rel="stylesheet">
     <script src="ratchet/js/ratchet.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="app.js"></script>
   </head>
 
   <body>
@@ -19,8 +21,8 @@
         </a>
       </button>
 
-      <button class="btn btn-link btn-nav pull-right" >
-        <a href="../host-create-categories.html" data-transition="slide-in">
+      <button class="btn btn-link btn-nav pull-right">
+        <a href="javascript:addMealName()" data-transition="slide-in">
           Next
           <span class="icon icon-right-nav"></span>
         </a>
@@ -32,9 +34,9 @@
       <div class="content-padded">
         <form>
           <h5>What are you hosting?</h5>
-          <input type="text">
+          <input id="meal_name" type="text">
           <h5>What are the details?</h5>
-          <textarea rows="5"></textarea>
+          <textarea id="meal_description" rows="5"></textarea>
         </form>
       </div>
     </div>

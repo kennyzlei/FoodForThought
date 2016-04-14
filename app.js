@@ -175,8 +175,21 @@ function addMealDetailsHTML(){
     var mealdetails5 = '<p> Cost: $' + meal["cost"] + '</p>';
     $('#meal_cost').append(mealdetails5);
     $('#prof_pic').attr("src", meal["pic_url"]);
+
+    var rsvpbutton;
+    if (meal["guest"] == true) {
+        rsvpbutton = '<button class="btn btn-negative btn-block">Cancel</button>';
+    } else {
+        rsvpbutton = '<button class="btn btn-positive btn-block">RSVP</button>';
+    }
+    $("#rsvp-cancel").append(rsvpbutton);
 }
 
+function toggleMeal() {
+    meals["upcoming"][getCurrentMealID()]["guest"] ^= true;
+    syncStorage();
+    history.go(-1);
+}
 
 function addMeal() {
     // grab details from localStorage
@@ -184,7 +197,101 @@ function addMeal() {
     addMealHTML(value);
     meals["upcoming"].push(value);
     syncStorage();
+
+    localStorage.removeItem("newmeal");
+    window.location.href = "host-homepage.html"
 }
+
+// create newmeal object
+function addMealName() {
+    var name_input = document.getElementById("meal_name");
+    var desc_input = document.getElementById("meal_description");
+
+    var newmeal = {"meal_name":"",
+    "meal_details":"",
+    "meal_categories":{},
+    "meal_date":"",
+    "meal_time":"",
+    "num_guests":"",
+    "cost":""};
+
+    console.log(name_input.value);
+    newmeal["meal_name"] = name_input.value;
+    newmeal["meal_details"] = desc_input.value;
+
+    localStorage.setItem("newmeal", JSON.stringify(newmeal));
+    window.location.href = "host-create-categories.html";
+}
+
+// add food categories to newmeal object
+function addMealCategories() {
+    var categories = document.getElementById("categories_list");
+    var items = categories.getElementsByTagName("li");
+
+    var choices = {};
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
+    console.log(newmeal);
+    // search through list items and see if an active toggle exists
+    for(var i = 0; i < items.length; i++) {
+        var x = items[i].getElementsByTagName("div");
+        if(x[0].classList.contains("active")) {
+            choices[i] = 1;
+        } else {
+            choices[i] = 0;
+        }
+        console.log(choices[i]);
+    }
+
+    newmeal["meal_categories"] = choices;
+    localStorage.setItem("newmeal", JSON.stringify(newmeal));
+    window.location.href = "host-create-date.html";
+}
+
+// add date and time of event to newmeal object
+function addMealTime() {
+    var date_input = document.getElementById("meal_day");
+    var time_input = document.getElementById("meal_time");
+
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
+
+    console.log(date_input.value);
+    newmeal["meal_date"] = date_input.value;
+    newmeal["meal_time"] = time_input.value;
+
+    localStorage.setItem("newmeal", JSON.stringify(newmeal));
+    window.location.href = "host-create-guests.html";
+}
+
+// add number of guests and cost per guest
+function addGuestInfo() {
+    var guest_input = document.getElementById("num_guests");
+    var cost_input = document.getElementById("guest_cost");
+
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
+
+    console.log(guest_input.value);
+    console.log(cost_input.value);
+    newmeal["num_guests"] = guest_input.value;
+    newmeal["cost"] = cost_input.value;
+
+    localStorage.setItem("newmeal", JSON.stringify(newmeal));
+    window.location.href = "host-create-summary.html";
+}
+
+// load all the details for host to confirm
+function loadMealSummary() {
+
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
+
+    $("#title").append(newmeal["meal_title"]);
+    $("#time").append(newmeal["meal_date"] + " @ " + newmeal["meal_time"]);
+    $("#guests").append("for " + newmeal["num_guests"] + " guests");
+    $("#costs").append("x $" + newmeal["meal_time"] + " per person");
+
+    var total = parseInt(newmeal["num_guests"]) * parseInt(newmeal["cost"])
+    $("#total").append("= $" + total + " to spend");
+}
+
 
 function getCurrentMealID() {
     var meal_id = parseInt(localStorage.getItem("current_meal_id"));
@@ -213,6 +320,12 @@ var checkPage = function(){
             console.log("going back");
             history.go(-1);
         });
+        $("#rsvp-cancel").click(function() {
+            toggleMeal();
+        })
+    }
+    if($("#host-create-summary").length) {
+        loadMealSummary();
     }
 };
 
