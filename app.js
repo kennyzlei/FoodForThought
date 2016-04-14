@@ -56,7 +56,7 @@ function loadStorage() {
                     "pic_url": "img/mixology.jpg",
                     "meal_time": "12:00 PM",
                     "meal_date": "April 17th",
-                    "location": "22 DeWolfe Street Cambridge, MA 02138",
+                    "location": "28 DeWolfe Street Cambridge, MA 02138",
                     "cost": 7,
                     "host": true,
                     "guest": false
@@ -95,7 +95,7 @@ function loadStorage() {
                     "pic_url": "img/sushi.jpg",
                     "meal_time": "6:30 PM",
                     "meal_date": "April 21st",
-                    "location": "25 DeWolfe Street Cambridge, MA 02138",
+                    "location": "28 DeWolfe Street Cambridge, MA 02138",
                     "cost": 7,
                     "host": false,
                     "guest": false
@@ -176,13 +176,15 @@ function addMealDetailsHTML(){
     $('#information5').append(mealdetails5);
     $('#prof_pic').attr("src", meal["pic_url"]);
     
-    var rsvpbutton;
-    if (meal["guest"] == true) {
-        rsvpbutton = '<button class="btn btn-negative btn-block">Cancel</button>';
-    } else {
-        rsvpbutton = '<button class="btn btn-positive btn-block">RSVP</button>';
+    if (getIfHost() == false) {
+        var rsvpbutton;
+        if (meal["guest"] == true) {
+            rsvpbutton = '<button class="btn btn-negative btn-block">Cancel</button>';
+        } else {
+            rsvpbutton = '<button class="btn btn-positive btn-block">RSVP</button>';
+        }
+        $("#rsvp-cancel").append(rsvpbutton);
     }
-    $("#rsvp-cancel").append(rsvpbutton);
 }
 
 function toggleMeal() {
@@ -194,8 +196,17 @@ function toggleMeal() {
 function addMeal() {
     // grab details from localStorage
     var value = JSON.parse(localStorage.getItem("newmeal"));
-    addMealHTML(value);
-    meals["upcoming"].push(value);
+    value["host"] = true;
+    value["guest"] = false;
+    value["pic_url"] = "img/chinese.jpg";
+    value["meal_id"] = 0;
+    value["host_name"] = "Larry Sanders";
+    value["location"] = "28 DeWolfe Street Cambridge, MA 02138";
+    
+    $.each(meals["upcoming"], function(key, value) {
+        value["meal_id"] += 1;
+    });
+    meals["upcoming"].unshift(value);
     syncStorage();
 
     localStorage.removeItem("newmeal");
@@ -298,6 +309,15 @@ function getCurrentMealID() {
     return meal_id;
 }
 
+function getIfHost() {
+    var if_host = localStorage.getItem("if_host");
+    return (if_host == "true");
+}
+
+function setIfHost(value) {
+    localStorage.setItem("if_host", value);
+}
+
 // when html document is loaded
 $(document).ready(function() {
     checkPage();
@@ -306,9 +326,11 @@ $(document).ready(function() {
 var checkPage = function(){
     loadStorage();
     if($("#host-homepage").length) {
+        setIfHost(true);
         loadHost();
     }
     if($("#guest-homepage").length) {
+        setIfHost(false);
         loadGuest();
     }
     if($("#guest-reservations").length) {
