@@ -162,26 +162,30 @@ function addMealHTML(value) {
 }
 
 function addMealDetailsHTML(){
-    var meal = meals["upcoming"][getCurrentMealID()];
-    $('.title').append(meal["meal_name"]);
-    var mealdetails = 'Host: ' + meal["host_name"] + "<div> <p> 2/5 RSVP's </p> </div>";
-    $('#heading').append(mealdetails);
-    var mealdetails2 = '<p>' + meal["meal_details"] + '</p>';
-    $('#meal_description').append(mealdetails2);
-    var mealdetails3 = '<p>' + meal["meal_date"] + '<br>' + meal["meal_time"] + '</p>';
-    $('#meal_time').append(mealdetails3);
-    var mealdetails4 = '<p> Location: <br>' + meal["location"] + '</p>';
-    $('#meal_location').append(mealdetails4);
-    var mealdetails5 = '<p> Cost: $' + meal["cost"] + '</p>';
-    $('#meal_cost').append(mealdetails5);
-    $('#prof_pic').attr("src", meal["pic_url"]);
-    
-    if (getIfHost() == false) {
+    if (!isNaN(getCurrentMealID())) {
+        var meal = meals["upcoming"][getCurrentMealID()];
+        $('.title').append(meal["meal_name"]);
+        var mealdetails = 'Host: ' + meal["host_name"] + "<div> <p> 2/5 RSVP's </p> </div>";
+        $('#heading').append(mealdetails);
+        var mealdetails2 = '<p>' + meal["meal_details"] + '</p>';
+        $('#meal_description').append(mealdetails2);
+        var mealdetails3 = '<p>' + meal["meal_date"] + '<br>' + meal["meal_time"] + '</p>';
+        $('#meal_time').append(mealdetails3);
+        var mealdetails4 = '<p> Location: <br>' + meal["location"] + '</p>';
+        $('#meal_location').append(mealdetails4);
+        var mealdetails5 = '<p> Cost: $' + meal["cost"] + '</p>';
+        $('#meal_cost').append(mealdetails5);
+        $('#prof_pic').attr("src", meal["pic_url"]);
+        
         var rsvpbutton;
-        if (meal["guest"] == true) {
-            rsvpbutton = '<button class="btn btn-negative btn-block">Cancel</button>';
+        if (getIfHost() == false) {
+            if (meal["guest"] == true) {
+                rsvpbutton = '<button class="btn btn-negative btn-block">Cancel</button>';
+            } else {
+                rsvpbutton = '<button class="btn btn-positive btn-block">RSVP</button>';
+            }
         } else {
-            rsvpbutton = '<button class="btn btn-positive btn-block">RSVP</button>';
+            rsvpbutton = '<button class="btn btn-negative btn-block">Cancel</button>'
         }
         $("#rsvp-cancel").append(rsvpbutton);
     }
@@ -211,6 +215,18 @@ function addMeal() {
 
     localStorage.removeItem("newmeal");
     window.location.href = "host-homepage.html"
+}
+
+function removeMeal() {
+    var meal_id = getCurrentMealID();
+    $.each(meals["upcoming"], function(key, value) {
+        if (key > meal_id) {
+            value["meal_id"] -= 1;
+        }
+    });
+    meals["upcoming"].splice(meal_id, 1);
+    syncStorage();
+    history.go(-1);
 }
 
 // create newmeal object
@@ -374,7 +390,11 @@ var checkPage = function(){
             history.go(-1);
         });
         $("#rsvp-cancel").click(function() {
-            toggleMeal();
+            if (getIfHost()) {
+                removeMeal();
+            } else { 
+                toggleMeal();
+            }
         })
     }
     if($("#host-create-summary").length) {
