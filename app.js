@@ -151,20 +151,6 @@ function loadHost() {
     });
 }
 
-// load all the details for host to confirm
-function loadMealSummary() {
-
-    var newmeal = JSON.parse(JSON.stringify(localStorage.getItem("newmeal")));
-
-    $("#title").append(newmeal["meal_title"]);
-    $("#time").append(newmeal["meal_date"] + " @ " + newmeal["meal_time"]);
-    $("#guests").append("for " + newmeal["num_guests"] + " guests");
-    $("#costs").append("x $" + newmeal["meal_time"] + " per person");
-
-    var total = parseInt(newmeal["num_guests"]) * parseInt(newmeal["cost"])
-    $("#total").append("= $" + total + " to spend");
-}
-
 function addMealHTML(value) {
     var newmeal = $('<li class="table-view-cell media" meal_id="'+value["meal_id"]+'"/>');
     newmeal.html('<a class="navigate-right">'+
@@ -207,7 +193,7 @@ function toggleMeal() {
 
 function addMeal() {
     // grab details from localStorage
-    var value = JSON.parse(JSON.stringify(localStorage.getItem("newmeal")));
+    var value = JSON.parse(localStorage.getItem("newmeal"));
     addMealHTML(value);
     meals["upcoming"].push(value);
     syncStorage();
@@ -221,11 +207,19 @@ function addMealName() {
     var name_input = document.getElementById("meal_name");
     var desc_input = document.getElementById("meal_description");
     
-    var newmeal = {};
+    var newmeal = {"meal_name":"",
+    "meal_details":"",
+    "meal_categories":{},
+    "meal_date":"",
+    "meal_time":"",
+    "num_guests":"",
+    "cost":""};
+
+    console.log(name_input.value);
     newmeal["meal_name"] = name_input.value;
     newmeal["meal_details"] = desc_input.value;
 
-    localStorage.setItem("newmeal", newmeal);
+    localStorage.setItem("newmeal", JSON.stringify(newmeal));
     window.location.href = "host-create-categories.html";
 }
 
@@ -235,21 +229,21 @@ function addMealCategories() {
     var items = categories.getElementsByTagName("li");
 
     var choices = {};
-    var newmeal = JSON.parse(JSON.stringify(localStorage.getItem("newmeal")));
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
     console.log(newmeal);
     // search through list items and see if an active toggle exists
     for(var i = 0; i < items.length; i++) {
         var x = items[i].getElementsByTagName("div");
         if(x[0].classList.contains("active")) {
-            choices[i] = 0;
-        } else {
             choices[i] = 1;
+        } else {
+            choices[i] = 0;
         }
         console.log(choices[i]);
     }
 
     newmeal["meal_categories"] = choices;
-    localStorage.setItem("newmeal", newmeal);
+    localStorage.setItem("newmeal", JSON.stringify(newmeal));
     window.location.href = "host-create-date.html";
 }
 
@@ -258,13 +252,13 @@ function addMealTime() {
     var date_input = document.getElementById("meal_day");
     var time_input = document.getElementById("meal_time");
 
-    var newmeal = JSON.parse(JSON.stringify(localStorage.getItem("newmeal")));
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
 
     console.log(date_input.value);
     newmeal["meal_date"] = date_input.value;
     newmeal["meal_time"] = time_input.value;
 
-    localStorage.setItem("newmeal", newmeal);
+    localStorage.setItem("newmeal", JSON.stringify(newmeal));
     window.location.href = "host-create-guests.html";
 }
 
@@ -273,14 +267,31 @@ function addGuestInfo() {
     var guest_input = document.getElementById("num_guests");
     var cost_input = document.getElementById("guest_cost");
 
-    var newmeal = JSON.parse(JSON.stringify(localStorage.getItem("newmeal")));
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
 
+    console.log(guest_input.value);
+    console.log(cost_input.value);
     newmeal["num_guests"] = guest_input.value;
     newmeal["cost"] = cost_input.value;
 
-    localStorage.setItem("newmeal", newmeal);
+    localStorage.setItem("newmeal", JSON.stringify(newmeal));
     window.location.href = "host-create-summary.html";
 }
+
+// load all the details for host to confirm
+function loadMealSummary() {
+
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
+
+    $("#title").append(newmeal["meal_title"]);
+    $("#time").append(newmeal["meal_date"] + " @ " + newmeal["meal_time"]);
+    $("#guests").append("for " + newmeal["num_guests"] + " guests");
+    $("#costs").append("x $" + newmeal["meal_time"] + " per person");
+
+    var total = parseInt(newmeal["num_guests"]) * parseInt(newmeal["cost"])
+    $("#total").append("= $" + total + " to spend");
+}
+
 
 function getCurrentMealID() {
     var meal_id = parseInt(localStorage.getItem("current_meal_id"));
