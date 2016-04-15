@@ -302,14 +302,9 @@ function addMealCategories() {
 // parts = items, options = choices, types = categories
 function changePreferences() {
     var preferences = {};
-    var categories = document.getElementById("meal_types");
+    var categories = document.getElementById("meal_categories");
     var items = categories.getElementsByTagName("li");
-
     var choices = [];
-
-    preferences["num_guest_preferences"] = 0;
-    preferences["meal_types"] = choices;
-    preferences["budget"] = 0;
 
     for(var i = 0; i < items.length; i++) {
         var x = items[i].getElementsByTagName("div");
@@ -321,22 +316,19 @@ function changePreferences() {
         console.log(choices[i]);
     }
 
-    preferences["meal_types"] = choices;
+    preferences["meal_categories"] = choices;
 
     // This is for the budget and number of guests preferences
-    var preferences_guest_input = document.getElementById("num_guest_preferences");
-    var preferences_budget_input = document.getElementById("budget");
+    var preferences_guest_input = document.getElementById("num_guests");
+    var preferences_budget_input = document.getElementById("cost");
 
     console.log(preferences_guest_input.value);
     console.log(preferences_budget_input.value);
-    preferences["num_guests_preferences"] = preferences_guest_input.value;
-    preferences["budget"] = preferences_budget_input.value;
+    preferences["num_guests"] = preferences_guest_input.value;
+    preferences["cost"] = preferences_budget_input.value;
 
     localStorage.setItem("preferences", JSON.stringify(preferences));
     window.location.href = "guest-homepage.html";
-}
-function loadPreferences(){
-
 }
 
 // add date and time of event to newmeal object
@@ -402,6 +394,22 @@ function loadHostMealCategories() {
             x[0].classList.add("active");
         }
     }
+}
+
+function loadPreferences (){
+    var preferences = JSON.parse(localStorage.getItem("preferences"));
+    var list = preferences["meal_categories"];
+    var table = document.getElementById("meal_categories");
+    var items = table.getElementsByTagName("li")
+
+    for(var i = 0; i < list.length; i++) {
+        var x = items[i].getElementsByTagName("div");
+        if(list[i]) {
+            x[0].classList.add("active");
+        }
+    }
+    $("#num_guests").val(preferences["num_guests"]);
+    $("#cost").val(preferences["cost"]);
 }
 
 function loadHostMealDate() {
@@ -478,6 +486,7 @@ var checkPage = function(){
         loadHostGuestInfo();
     }
     if($("#guest-preferences").length) {
+      loadPreferences();
         $("#back-button").click(function() {
             changePreferences();
         });
