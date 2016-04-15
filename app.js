@@ -14,10 +14,12 @@ function loadStorage() {
                     "host_name": "Larry Sanders",
                     "meal_name": "Larry's BBQ",
                     "meal_details": "amazing meal",
+                    "meal_categories": [1, 1, 1, 1, 1, 1],
                     "pic_url": "img/bbq.jpg",
                     "meal_time": "1:00 PM",
                     "meal_date": "April 15th",
                     "location": "28 DeWolfe Street Cambridge, MA 02138",
+                    "num_guests": 5,
                     "cost": 7,
                     "host": true,
                     "guest": true
@@ -27,10 +29,12 @@ function loadStorage() {
                     "host_name": "Larry Sanders",
                     "meal_name": "Pizza Party",
                     "meal_details": "amazing meal",
+                    "meal_categories": [1, 1, 1, 1, 1, 1],
                     "pic_url": "img/paula.jpg",
                     "meal_time": "7:00 PM",
                     "meal_date": "April 15th",
                     "location": "20 DeWolfe Street Cambridge, MA 02138",
+                    "num_guests": 5,
                     "cost": 7,
                     "host": false,
                     "guest": true
@@ -40,10 +44,12 @@ function loadStorage() {
                     "host_name": "Jim Sanders",
                     "meal_name": "Chicken Gumbo with Jim",
                     "meal_details": "amazing meal",
+                    "meal_categories": [1, 1, 1, 1, 1, 1],
                     "pic_url": "img/chicken-gumbo.jpg",
                     "meal_time": "7:00 PM",
                     "meal_date": "April 16th",
                     "location": "21 DeWolfe Street Cambridge, MA 02138",
+                    "num_guests": 5,
                     "cost": 7,
                     "host": false,
                     "guest": false
@@ -53,10 +59,12 @@ function loadStorage() {
                     "host_name": "Larry Sanders",
                     "meal_name": "Happy Hour at Larry's Crib",
                     "meal_details": "amazing meal",
+                    "meal_categories": [1, 1, 1, 1, 1, 1],
                     "pic_url": "img/mixology.jpg",
                     "meal_time": "12:00 PM",
                     "meal_date": "April 17th",
                     "location": "28 DeWolfe Street Cambridge, MA 02138",
+                    "num_guests": 5,
                     "cost": 7,
                     "host": true,
                     "guest": false
@@ -66,10 +74,12 @@ function loadStorage() {
                     "host_name": "Lisa Sanders",
                     "meal_name": "Pad Thai with Lisa",
                     "meal_details": "amazing meal",
+                    "meal_categories": [1, 1, 1, 1, 1, 1],
                     "pic_url": "img/pad-thai.jpg",
                     "meal_time": "9:00 PM",
                     "meal_date": "April 17th",
                     "location": "23 DeWolfe Street Cambridge, MA 02138",
+                    "num_guests": 5,
                     "cost": 7,
                     "host": false,
                     "guest": true
@@ -79,10 +89,12 @@ function loadStorage() {
                     "host_name": "Joe Sanders",
                     "meal_name": "Burgers with Joe",
                     "meal_details": "amazing meal",
+                    "meal_categories": [1, 1, 1, 1, 1, 1],
                     "pic_url": "img/burger.jpg",
                     "meal_time": "1:00 PM",
                     "meal_date": "April 19th",
                     "location": "24 DeWolfe Street Cambridge, MA 02138",
+                    "num_guests": 5,
                     "cost": 7,
                     "host": false,
                     "guest": false
@@ -92,10 +104,12 @@ function loadStorage() {
                     "host_name": "Larry Sanders",
                     "meal_name": "Learn How to California Roll",
                     "meal_details": "amazing meal",
+                    "meal_categories": [1, 1, 1, 1, 1, 1],
                     "pic_url": "img/sushi.jpg",
                     "meal_time": "6:30 PM",
                     "meal_date": "April 21st",
                     "location": "28 DeWolfe Street Cambridge, MA 02138",
+                    "num_guests": 5,
                     "cost": 7,
                     "host": false,
                     "guest": false
@@ -105,10 +119,12 @@ function loadStorage() {
                     "host_name": "Larry Sanders",
                     "meal_name": "Ribfest",
                     "meal_details": "amazing meal",
+                    "meal_categories": [1, 1, 1, 1, 1, 1],
                     "pic_url": "img/bobby.jpg",
                     "meal_time": "6:00 PM",
                     "meal_date": "May 1st",
                     "location": "27 DeWolfe Street Cambridge, MA 02138",
+                    "num_guests": 5,
                     "cost": 7,
                     "host": false,
                     "guest": false
@@ -121,12 +137,22 @@ function loadStorage() {
 // call this if its the guest homepage
 function loadGuest() {
     var upcoming = meals["upcoming"];
+    var preferences = JSON.parse(localStorage.getItem("preferences"));
 
     $.each(upcoming, function(key, value) {
         if (value["guest"] == false) {
             addMealHTML(value);
         }
     });
+}
+
+function compareMealPreferences(meal, preferences) {
+    for (var i=0; i < meal["meal_categories"].length; i++) {
+        if (meal["meal_categories"][i] == 1 && preferences["meal_categories"][i] == 0) {
+            return false;
+        }
+    }
+    return true;
 }
 
 // call this if its the guest reservations page
