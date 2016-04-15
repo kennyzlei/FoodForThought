@@ -276,26 +276,26 @@ function addMealCategories() {
 // parts = items, options = choices, types = categories
 function changePreferences() {
     var preferences = {};
-    var types = document.getElementById("meal_types");
-    var parts = types.getElementsByTagName("li");
+    var categories = document.getElementById("meal_types");
+    var items = categories.getElementsByTagName("li");
 
-    var options = [];
+    var choices = [];
 
     preferences["num_guest_preferences"] = 0;
-    preferences["meal_types"] = options;
+    preferences["meal_types"] = choices;
     preferences["budget"] = 0;
 
-    for(var i = 0; i < parts.length; i++) {
-        var x = parts[i].getElementsByTagName("div");
+    for(var i = 0; i < items.length; i++) {
+        var x = items[i].getElementsByTagName("div");
         if(x[0].classList.contains("active")) {
-            options[i] = 1;
+            choices[i] = 1;
         } else {
-            options[i] = 0;
+            choices[i] = 0;
         }
-        console.log(options[i]);
+        console.log(choices[i]);
     }
 
-    preferences["meal_types"] = options;
+    preferences["meal_types"] = choices;
 
     // This is for the budget and number of guests preferences
     var preferences_guest_input = document.getElementById("num_guest_preferences");
@@ -308,6 +308,9 @@ function changePreferences() {
 
     localStorage.setItem("preferences", JSON.stringify(preferences));
     window.location.href = "guest-homepage.html";
+}
+function loadPreferences(){
+
 }
 
 // add date and time of event to newmeal object
