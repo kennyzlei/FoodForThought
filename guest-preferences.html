@@ -13,16 +13,14 @@
   <body>
 
     <header class="bar bar-nav">
-      <button class="btn btn-link btn-nav pull-left">
-        <a href="../guest-homepage.html" data-transition="slide-out">
+      <button class="btn btn-link btn-nav pull-left" id="back-button">
           <span class="icon icon-left-nav"></span>
           Back
-        </a>
       </button>
       <h1 class="title">Preferences</h1>
     </header>
 
-    <div class= "content">
+    <div class= "content" id="guest-preferences">
       <div class="content-padded">
 
         <ul style="position: relative; top: 30px; margin-left: auto; margin-right: auto; display: block;" class="table-view">
@@ -35,48 +33,70 @@
 
         <p style="position: relative; top: 70px; margin-left: auto; margin-right: auto; width: 10em;"> Food Types: </p>
         <div style="position: relative; top: 70px; margin-left: auto; margin-right: auto; width: 10em;">
-          <ul class="table-view">
-            <li class="table-view-cell">American <button class="btn btn-positive">Yes</button></li>
-            <li class="table-view-cell">Italian <button class="btn btn-positive">Yes</button></li>
-            <li class="table-view-cell">Chinese <button class="btn">No</button></li>
-            <li class="table-view-cell">Indian <button class="btn btn-positive">Yes</button></li>
-          </ul>
+        <ul id = "meal_types" class="table-view">
+          <li class="table-view-cell">
+          American
+            <div class="toggle">
+              <div class="toggle-handle"></div>
+            </div>
+          </li>
+          <li class="table-view-cell">
+            Chinese
+            <div class="toggle active">
+              <div class="toggle-handle"></div>
+            </div>
+          </li>
+          <li class="table-view-cell">
+            Italian
+            <div class="toggle">
+              <div class="toggle-handle"></div>
+            </div>
+          </li>
+          <li class="table-view-cell">
+            Indian
+            <div class="toggle">
+              <div class="toggle-handle"></div>
+            </div>
+          </li>
+          <li class="table-view-cell">
+            Japanese
+            <div class="toggle">
+              <div class="toggle-handle"></div>
+            </div>
+          </li>
+          <li class="table-view-cell">
+            Mexican
+            <div class="toggle">
+              <div class="toggle-handle"></div>
+            </div>
+          </li>
+        </ul>
         </div>
 
         <p style="position: relative; top: 70px; margin-left: auto; margin-right: auto; width: 10em;"> Number of People Attending: </p>
           <div  style="position: relative; top: 70px; margin-left: auto; margin-right: auto; width: 10em;">
-            <select>
-              <option value="volvo">1</option>
-              <option value="saab">2</option>
-              <option value="opel">3</option>
-              <option value="audi">4</option>
-              <option value="audi">5</option>
-              <option value="audi">5+</option>
+            <select id= "num_guest_preferences">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="5+">5+</option>
             </select>
           </div>
         <p style="position: relative; top: 70px; margin-left: auto; margin-right: auto; width: 10em;"> Budget: </p>
           <div  style="position: relative; top: 70px; margin-left: auto; margin-right: auto; width: 10em;">
-            <select>
-              <option value="volvo">$1</option>
-              <option value="saab">$2</option>
-              <option value="opel">$3</option>
-              <option value="audi">$4</option>
-              <option value="audi">$5</option>
-              <option value="audi">$6</option>
-              <option value="audi">$7</option>
-              <option value="audi">$8</option>
-              <option value="audi">$9</option>
-              <option value="audi">$10</option>
-            </select>
-          </div>
-        <p style="position: relative; top: 70px; margin-left: auto; margin-right: auto; width: 10em;"> Mile Radius: </p>
-          <div  style="position: relative; top: 70px; margin-left: auto; margin-right: auto; width: 10em;">
-            <select>
-              <option value="volvo">5</option>
-              <option value="saab">10</option>
-              <option value="opel">15</option>
-              <option value="audi">20</option>
-              <option value="audi">25</option>
+            <select id = "budget">
+              <option value="1">$1</option>
+              <option value="2">$2</option>
+              <option value="3">$3</option>
+              <option value="4">$4</option>
+              <option value="5">$5</option>
+              <option value="6">$6</option>
+              <option value="7">$7</option>
+              <option value="8">$8</option>
+              <option value="9">$9</option>
+              <option value="10">$10</option>
             </select>
           </div>
         </div>

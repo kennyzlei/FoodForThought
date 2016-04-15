@@ -176,7 +176,7 @@ function addMealDetailsHTML(){
         var mealdetails5 = '<p> Cost: $' + meal["cost"] + '</p>';
         $('#meal_cost').append(mealdetails5);
         $('#prof_pic').attr("src", meal["pic_url"]);
-        
+
         var rsvpbutton;
         if (getIfHost() == false) {
             if (meal["guest"] == true) {
@@ -206,7 +206,7 @@ function addMeal() {
     value["meal_id"] = 0;
     value["host_name"] = "Larry Sanders";
     value["location"] = "28 DeWolfe Street Cambridge, MA 02138";
-    
+
     $.each(meals["upcoming"], function(key, value) {
         value["meal_id"] += 1;
     });
@@ -272,6 +272,42 @@ function addMealCategories() {
     newmeal["meal_categories"] = choices;
     localStorage.setItem("newmeal", JSON.stringify(newmeal));
     window.location.href = "host-create-date.html";
+}
+// parts = items, options = choices, types = categories
+function changePreferences() {
+    var preferences = {};
+    var types = document.getElementById("meal_types");
+    var parts = types.getElementsByTagName("li");
+
+    var options = [];
+
+    preferences["num_guest_preferences"] = 0;
+    preferences["meal_types"] = options;
+    preferences["budget"] = 0;
+
+    for(var i = 0; i < parts.length; i++) {
+        var x = parts[i].getElementsByTagName("div");
+        if(x[0].classList.contains("active")) {
+            options[i] = 1;
+        } else {
+            options[i] = 0;
+        }
+        console.log(options[i]);
+    }
+
+    preferences["meal_types"] = options;
+
+    // This is for the budget and number of guests preferences
+    var preferences_guest_input = document.getElementById("num_guest_preferences");
+    var preferences_budget_input = document.getElementById("budget");
+
+    console.log(preferences_guest_input.value);
+    console.log(preferences_budget_input.value);
+    preferences["num_guests_preferences"] = preferences_guest_input.value;
+    preferences["budget"] = preferences_budget_input.value;
+
+    localStorage.setItem("preferences", JSON.stringify(preferences));
+    window.location.href = "guest-homepage.html";
 }
 
 // add date and time of event to newmeal object
@@ -392,7 +428,7 @@ var checkPage = function(){
         $("#rsvp-cancel").click(function() {
             if (getIfHost()) {
                 removeMeal();
-            } else { 
+            } else {
                 toggleMeal();
             }
         })
@@ -401,7 +437,7 @@ var checkPage = function(){
         loadMealSummary();
     }
     if($("#host-create-name").length) {
-       loadHostMealName(); 
+       loadHostMealName();
     }
     if($("#host-create-categories").length) {
         loadHostMealCategories();
@@ -411,6 +447,11 @@ var checkPage = function(){
     }
     if($("#host-create-guests").length) {
         loadHostGuestInfo();
+    }
+    if($("#guest-preferences").length) {
+        $("#back-button").click(function() {
+            changePreferences();
+        });
     }
 };
 
