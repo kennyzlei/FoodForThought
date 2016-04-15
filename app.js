@@ -274,7 +274,6 @@ function addMealName() {
     "num_guests":"",
     "cost":""};
 
-    console.log(name_input.value);
     newmeal["meal_name"] = name_input.value;
     newmeal["meal_details"] = desc_input.value;
 
@@ -289,7 +288,7 @@ function addMealCategories() {
 
     var choices = {};
     var newmeal = JSON.parse(localStorage.getItem("newmeal"));
-    console.log(newmeal);
+
     // search through list items and see if an active toggle exists
     for(var i = 0; i < items.length; i++) {
         var x = items[i].getElementsByTagName("div");
@@ -298,7 +297,6 @@ function addMealCategories() {
         } else {
             choices[i] = 0;
         }
-        console.log(choices[i]);
     }
 
     newmeal["meal_categories"] = choices;
@@ -319,7 +317,6 @@ function changePreferences() {
         } else {
             choices[i] = 0;
         }
-        console.log(choices[i]);
     }
 
     preferences["meal_categories"] = choices;
@@ -328,8 +325,6 @@ function changePreferences() {
     var preferences_guest_input = document.getElementById("num_guests");
     var preferences_budget_input = document.getElementById("cost");
 
-    console.log(preferences_guest_input.value);
-    console.log(preferences_budget_input.value);
     preferences["num_guests"] = preferences_guest_input.value;
     preferences["cost"] = preferences_budget_input.value;
 
@@ -344,7 +339,6 @@ function addMealTime() {
 
     var newmeal = JSON.parse(localStorage.getItem("newmeal"));
 
-    console.log(date_input.value);
     newmeal["meal_date"] = date_input.value;
     newmeal["meal_time"] = time_input.value;
 
@@ -359,8 +353,6 @@ function addGuestInfo() {
 
     var newmeal = JSON.parse(localStorage.getItem("newmeal"));
 
-    console.log(guest_input.value);
-    console.log(cost_input.value);
     newmeal["num_guests"] = guest_input.value;
     newmeal["cost"] = cost_input.value;
 
@@ -467,7 +459,6 @@ var checkPage = function(){
     if($("#guest-reservation-detail").length) {
         addMealDetailsHTML();
         $("#back-button").click(function() {
-            console.log("going back");
             history.go(-1);
         });
         $("#rsvp-cancel").click(function() {
