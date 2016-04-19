@@ -150,6 +150,7 @@ function compareMealPreferences(value, preferences) {
     if (preferences == null) {
         return true;
     }
+
     if (value["cost"] > preferences["cost"]) {
         return false;
     }
@@ -286,7 +287,7 @@ function addMealCategories() {
     var categories = document.getElementById("categories_list");
     var items = categories.getElementsByTagName("li");
 
-    var choices = {};
+    var choices = [];
     var newmeal = JSON.parse(localStorage.getItem("newmeal"));
 
     // search through list items and see if an active toggle exists
@@ -353,8 +354,8 @@ function addGuestInfo() {
 
     var newmeal = JSON.parse(localStorage.getItem("newmeal"));
 
-    newmeal["num_guests"] = guest_input.value;
-    newmeal["cost"] = cost_input.value;
+    newmeal["num_guests"] = parseInt(guest_input.value);
+    newmeal["cost"] = parseInt(cost_input.value);
 
     localStorage.setItem("newmeal", JSON.stringify(newmeal));
     window.location.href = "host-create-summary.html";
@@ -376,8 +377,10 @@ function loadMealSummary() {
 
 function loadHostMealName() {
     var newmeal = JSON.parse(localStorage.getItem("newmeal"));
-    $("#meal_name").attr("value", newmeal["meal_name"]);
-    $("#meal_description").append(newmeal["meal_details"]);
+    if (newmeal != null) {
+        $("#meal_name").attr("value", newmeal["meal_name"]);
+        $("#meal_description").append(newmeal["meal_details"]);
+    }
 }
 
 function loadHostMealCategories() {
