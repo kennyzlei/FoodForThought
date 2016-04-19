@@ -213,12 +213,12 @@ function addMealDetailsHTML(){
         var rsvpbutton;
         if (getIfHost() == false) {
             if (meal["guest"] == true) {
-                rsvpbutton = '<button class="btn btn-negative btn-block">Cancel</button>';
+                rsvpbutton = '<button class="btn btn-negative btn-block btn-outlined">Cancel</button>';
             } else {
                 rsvpbutton = '<button class="btn btn-positive btn-block">RSVP</button>';
             }
         } else {
-            rsvpbutton = '<button class="btn btn-negative btn-block">Cancel</button>'
+            rsvpbutton = '<button class="btn btn-negative btn-block btn-outlined">Cancel</button>'
         }
         $("#rsvp-cancel").append(rsvpbutton);
     }
