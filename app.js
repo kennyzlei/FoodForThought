@@ -264,16 +264,13 @@ function removeMeal() {
 
 // create newmeal object
 function addMealName() {
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
+    if (newmeal == null) {
+        newmeal = {};
+    }
+    
     var name_input = document.getElementById("meal_name");
     var desc_input = document.getElementById("meal_description");
-
-    var newmeal = {"meal_name":"",
-    "meal_details":"",
-    "meal_categories":{},
-    "meal_date":"",
-    "meal_time":"",
-    "num_guests":"",
-    "cost":""};
 
     newmeal["meal_name"] = name_input.value;
     newmeal["meal_details"] = desc_input.value;
