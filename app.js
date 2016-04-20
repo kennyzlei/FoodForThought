@@ -19,7 +19,7 @@ function loadStorage() {
                     "meal_time": "1:00 PM",
                     "meal_date": "April 15th",
                     "location": "28 DeWolfe Street Cambridge, MA 02138",
-                    "num_guests": 5,
+                    "num_guests": 4,
                     "cost": 8,
                     "host": true,
                     "guest": true
@@ -49,7 +49,7 @@ function loadStorage() {
                     "meal_time": "7:00 PM",
                     "meal_date": "April 16th",
                     "location": "21 DeWolfe Street Cambridge, MA 02138",
-                    "num_guests": 5,
+                    "num_guests": 6,
                     "cost": 7,
                     "host": false,
                     "guest": false
@@ -79,8 +79,8 @@ function loadStorage() {
                     "meal_time": "9:00 PM",
                     "meal_date": "April 17th",
                     "location": "23 DeWolfe Street Cambridge, MA 02138",
-                    "num_guests": 5,
-                    "cost": 7,
+                    "num_guests": 3,
+                    "cost": 9,
                     "host": false,
                     "guest": true
                 },
@@ -109,7 +109,7 @@ function loadStorage() {
                     "meal_time": "6:30 PM",
                     "meal_date": "April 21st",
                     "location": "28 DeWolfe Street Cambridge, MA 02138",
-                    "num_guests": 5,
+                    "num_guests": 4,
                     "cost": 10,
                     "host": false,
                     "guest": false
@@ -124,7 +124,7 @@ function loadStorage() {
                     "meal_time": "6:00 PM",
                     "meal_date": "May 1st",
                     "location": "27 DeWolfe Street Cambridge, MA 02138",
-                    "num_guests": 5,
+                    "num_guests": 4,
                     "cost": 7,
                     "host": false,
                     "guest": false
@@ -198,7 +198,7 @@ function addMealDetailsHTML(){
     if (!isNaN(getCurrentMealID())) {
         var meal = meals["upcoming"][getCurrentMealID()];
         $('.title').append(meal["meal_name"]);
-        var mealdetails = 'Host: ' + meal["host_name"] + "<div> <p> 2/5 RSVP's </p> </div>";
+        var mealdetails = 'Host: ' + meal["host_name"] + "<div> <p> 2/" + meal["num_guests"] + " RSVP's </p> </div>";
         $('#heading').append(mealdetails);
         var mealdetails2 = '<p>' + meal["meal_details"] + '</p>';
         $('#meal_description').append(mealdetails2);
