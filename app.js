@@ -197,8 +197,8 @@ function addMealHTML(value) {
 function addMealDetailsHTML(){
     if (!isNaN(getCurrentMealID())) {
         var meal = meals["upcoming"][getCurrentMealID()];
-        $('.title').append(meal["meal_name"]);
-        var mealdetails = 'Host: ' + meal["host_name"] + "<div> <p> 2/" + meal["num_guests"] + " RSVP's </p> </div>";
+        //$('.title').append(meal["meal_name"]);
+        var mealdetails = meal["meal_name"] + '<p>Host: ' + meal["host_name"] + "</p><p> 2/" + meal["num_guests"] + " RSVP's </p>";
         $('#heading').append(mealdetails);
         var mealdetails2 = '<p>' + meal["meal_details"] + '</p>';
         $('#meal_description').append(mealdetails2);
