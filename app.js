@@ -102,9 +102,9 @@ function loadStorage() {
                 },
                 {
                     "meal_id": 6,
-                    "host_name": "Larry Sanders",
+                    "host_name": "Jody Chen",
                     "meal_name": "Learn How to California Roll",
-                    "meal_details": "amazing meal",
+                    "meal_details": "I am a retired sushi chef, who still loves making delcious food for my local community. We will learn how to make the perfect California rolls, and then enjoy them afterwards! There is nothing required except a positive attitude and an appetite for some good food!",
                     "meal_categories": [1, 0, 0, 0, 1, 0],
                     "pic_url": "img/sushi.jpg",
                     "meal_time": "6:30 PM",
