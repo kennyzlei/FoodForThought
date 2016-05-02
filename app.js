@@ -13,11 +13,7 @@ function loadStorage() {
                     "meal_id": 0,
                     "host_name": "Larry Sanders",
                     "meal_name": "Larry's BBQ",
-                    "meal_details": "Join me while we cook some burgers, hot dogs, ribs, sausages and baked beans in
-                    the warm sunshine. Being a grill master for about 10 years now, I've won some local BBQ competitions
-                    with my award-winning hot&spicy BBQ sauce. Come try it out and let me know what you think! I might even
-                    reveal some of my well-kept secrets on how to glaze your meats properly ;) Also, bring your swimsuits if you
-                    want to go swimming...the pool will be open!",
+                    "meal_details": "Join me while we cook some burgers, hot dogs, ribs, sausages and baked beans in the warm sunshine. Being a grill master for about 10 years now, I've won some local BBQ competitions with my award-winning hot&spicy BBQ sauce. Come try it out and let me know what you think! I might even reveal some of my well-kept secrets if you enjoy the food!",
                     "meal_categories": [1, 1, 1, 1, 1, 1],
                     "meal_categories": [1, 0, 0, 0, 0, 0],
                     "pic_url": "img/bbq.jpg",
