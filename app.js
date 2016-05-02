@@ -13,14 +13,20 @@ function loadStorage() {
                     "meal_id": 0,
                     "host_name": "Larry Sanders",
                     "meal_name": "Larry's BBQ",
-                    "meal_details": "amazing meal",
+                    "meal_details": "Join me while we cook some burgers, hot dogs, ribs, sausages and baked beans in
+                    the warm sunshine. Being a grill master for about 10 years now, I've won some local BBQ competitions
+                    with my award-winning hot&spicy BBQ sauce. Come try it out and let me know what you think! I might even
+                    reveal some of my well-kept secrets on how to glaze your meats properly ;) Also, bring your swimsuits if you
+                    want to go swimming...the pool will be open!",
                     "meal_categories": [1, 1, 1, 1, 1, 1],
+                    "meal_details": "amazing meal",
+                    "meal_categories": [1, 0, 0, 0, 0, 0],
                     "pic_url": "img/bbq.jpg",
                     "meal_time": "1:00 PM",
                     "meal_date": "April 15th",
                     "location": "28 DeWolfe Street Cambridge, MA 02138",
-                    "num_guests": 5,
-                    "cost": 7,
+                    "num_guests": 4,
+                    "cost": 8,
                     "host": true,
                     "guest": true
                 },
@@ -29,13 +35,13 @@ function loadStorage() {
                     "host_name": "Larry Sanders",
                     "meal_name": "Pizza Party",
                     "meal_details": "amazing meal",
-                    "meal_categories": [1, 1, 1, 1, 1, 1],
+                    "meal_categories": [1, 0, 0, 0, 0, 0],
                     "pic_url": "img/paula.jpg",
                     "meal_time": "7:00 PM",
                     "meal_date": "April 15th",
                     "location": "20 DeWolfe Street Cambridge, MA 02138",
                     "num_guests": 5,
-                    "cost": 7,
+                    "cost": 5,
                     "host": false,
                     "guest": true
                 },
@@ -44,12 +50,12 @@ function loadStorage() {
                     "host_name": "Jim Sanders",
                     "meal_name": "Chicken Gumbo with Jim",
                     "meal_details": "amazing meal",
-                    "meal_categories": [1, 1, 1, 1, 1, 1],
+                    "meal_categories": [1, 0, 0, 0, 0, 0],
                     "pic_url": "img/chicken-gumbo.jpg",
                     "meal_time": "7:00 PM",
                     "meal_date": "April 16th",
                     "location": "21 DeWolfe Street Cambridge, MA 02138",
-                    "num_guests": 5,
+                    "num_guests": 6,
                     "cost": 7,
                     "host": false,
                     "guest": false
@@ -65,7 +71,7 @@ function loadStorage() {
                     "meal_date": "April 17th",
                     "location": "28 DeWolfe Street Cambridge, MA 02138",
                     "num_guests": 5,
-                    "cost": 7,
+                    "cost": 8,
                     "host": true,
                     "guest": false
                 },
@@ -74,13 +80,13 @@ function loadStorage() {
                     "host_name": "Lisa Sanders",
                     "meal_name": "Pad Thai with Lisa",
                     "meal_details": "amazing meal",
-                    "meal_categories": [1, 1, 1, 1, 1, 1],
+                    "meal_categories": [0, 1, 0, 0, 1, 0],
                     "pic_url": "img/pad-thai.jpg",
                     "meal_time": "9:00 PM",
                     "meal_date": "April 17th",
                     "location": "23 DeWolfe Street Cambridge, MA 02138",
-                    "num_guests": 5,
-                    "cost": 7,
+                    "num_guests": 3,
+                    "cost": 9,
                     "host": false,
                     "guest": true
                 },
@@ -89,7 +95,7 @@ function loadStorage() {
                     "host_name": "Joe Sanders",
                     "meal_name": "Burgers with Joe",
                     "meal_details": "amazing meal",
-                    "meal_categories": [1, 1, 1, 1, 1, 1],
+                    "meal_categories": [1, 0, 0, 0, 0, 0],
                     "pic_url": "img/burger.jpg",
                     "meal_time": "1:00 PM",
                     "meal_date": "April 19th",
@@ -104,13 +110,13 @@ function loadStorage() {
                     "host_name": "Larry Sanders",
                     "meal_name": "Learn How to California Roll",
                     "meal_details": "amazing meal",
-                    "meal_categories": [1, 1, 1, 1, 1, 1],
+                    "meal_categories": [1, 0, 0, 0, 1, 0],
                     "pic_url": "img/sushi.jpg",
                     "meal_time": "6:30 PM",
                     "meal_date": "April 21st",
                     "location": "28 DeWolfe Street Cambridge, MA 02138",
-                    "num_guests": 5,
-                    "cost": 7,
+                    "num_guests": 4,
+                    "cost": 10,
                     "host": false,
                     "guest": false
                 },
@@ -119,12 +125,12 @@ function loadStorage() {
                     "host_name": "Larry Sanders",
                     "meal_name": "Ribfest",
                     "meal_details": "amazing meal",
-                    "meal_categories": [1, 1, 1, 1, 1, 1],
+                    "meal_categories": [1, 0, 0, 0, 0, 0],
                     "pic_url": "img/bobby.jpg",
                     "meal_time": "6:00 PM",
                     "meal_date": "May 1st",
                     "location": "27 DeWolfe Street Cambridge, MA 02138",
-                    "num_guests": 5,
+                    "num_guests": 4,
                     "cost": 7,
                     "host": false,
                     "guest": false
@@ -140,19 +146,26 @@ function loadGuest() {
     var preferences = JSON.parse(localStorage.getItem("preferences"));
 
     $.each(upcoming, function(key, value) {
-        if (value["guest"] == false) {
+        if (value["guest"] == false && compareMealPreferences(value, preferences)) {
             addMealHTML(value);
         }
     });
 }
 
-function compareMealPreferences(meal, preferences) {
-    for (var i=0; i < meal["meal_categories"].length; i++) {
-        if (meal["meal_categories"][i] == 1 && preferences["meal_categories"][i] == 0) {
-            return false;
+function compareMealPreferences(value, preferences) {
+    if (preferences == null) {
+        return true;
+    }
+
+    if (value["cost"] > preferences["cost"]) {
+        return false;
+    }
+    for (var i=0; i < value["meal_categories"].length; i++) {
+        if (preferences["meal_categories"][i] == 1 && value["meal_categories"][i] == 1) {
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
 // call this if its the guest reservations page
@@ -191,7 +204,7 @@ function addMealDetailsHTML(){
     if (!isNaN(getCurrentMealID())) {
         var meal = meals["upcoming"][getCurrentMealID()];
         $('.title').append(meal["meal_name"]);
-        var mealdetails = 'Host: ' + meal["host_name"] + "<div> <p> 2/5 RSVP's </p> </div>";
+        var mealdetails = 'Host: ' + meal["host_name"] + "<div> <p> 2/" + meal["num_guests"] + " RSVP's </p> </div>";
         $('#heading').append(mealdetails);
         var mealdetails2 = '<p>' + meal["meal_details"] + '</p>';
         $('#meal_description').append(mealdetails2);
@@ -206,12 +219,12 @@ function addMealDetailsHTML(){
         var rsvpbutton;
         if (getIfHost() == false) {
             if (meal["guest"] == true) {
-                rsvpbutton = '<button class="btn btn-negative btn-block">Cancel</button>';
+                rsvpbutton = '<button class="btn btn-negative btn-block btn-outlined">Cancel</button>';
             } else {
                 rsvpbutton = '<button class="btn btn-positive btn-block">RSVP</button>';
             }
         } else {
-            rsvpbutton = '<button class="btn btn-negative btn-block">Cancel</button>'
+            rsvpbutton = '<button class="btn btn-negative btn-block btn-outlined">Cancel</button>'
         }
         $("#rsvp-cancel").append(rsvpbutton);
     }
@@ -257,18 +270,14 @@ function removeMeal() {
 
 // create newmeal object
 function addMealName() {
+    var newmeal = JSON.parse(localStorage.getItem("newmeal"));
+    if (newmeal == null) {
+        newmeal = {};
+    }
+
     var name_input = document.getElementById("meal_name");
     var desc_input = document.getElementById("meal_description");
 
-    var newmeal = {"meal_name":"",
-    "meal_details":"",
-    "meal_categories":{},
-    "meal_date":"",
-    "meal_time":"",
-    "num_guests":"",
-    "cost":""};
-
-    console.log(name_input.value);
     newmeal["meal_name"] = name_input.value;
     newmeal["meal_details"] = desc_input.value;
 
@@ -281,9 +290,9 @@ function addMealCategories() {
     var categories = document.getElementById("categories_list");
     var items = categories.getElementsByTagName("li");
 
-    var choices = {};
+    var choices = [];
     var newmeal = JSON.parse(localStorage.getItem("newmeal"));
-    console.log(newmeal);
+
     // search through list items and see if an active toggle exists
     for(var i = 0; i < items.length; i++) {
         var x = items[i].getElementsByTagName("div");
@@ -292,7 +301,6 @@ function addMealCategories() {
         } else {
             choices[i] = 0;
         }
-        console.log(choices[i]);
     }
 
     newmeal["meal_categories"] = choices;
@@ -313,7 +321,6 @@ function changePreferences() {
         } else {
             choices[i] = 0;
         }
-        console.log(choices[i]);
     }
 
     preferences["meal_categories"] = choices;
@@ -322,8 +329,6 @@ function changePreferences() {
     var preferences_guest_input = document.getElementById("num_guests");
     var preferences_budget_input = document.getElementById("cost");
 
-    console.log(preferences_guest_input.value);
-    console.log(preferences_budget_input.value);
     preferences["num_guests"] = preferences_guest_input.value;
     preferences["cost"] = preferences_budget_input.value;
 
@@ -338,7 +343,6 @@ function addMealTime() {
 
     var newmeal = JSON.parse(localStorage.getItem("newmeal"));
 
-    console.log(date_input.value);
     newmeal["meal_date"] = date_input.value;
     newmeal["meal_time"] = time_input.value;
 
@@ -353,10 +357,8 @@ function addGuestInfo() {
 
     var newmeal = JSON.parse(localStorage.getItem("newmeal"));
 
-    console.log(guest_input.value);
-    console.log(cost_input.value);
-    newmeal["num_guests"] = guest_input.value;
-    newmeal["cost"] = cost_input.value;
+    newmeal["num_guests"] = parseInt(guest_input.value);
+    newmeal["cost"] = parseInt(cost_input.value);
 
     localStorage.setItem("newmeal", JSON.stringify(newmeal));
     window.location.href = "host-create-summary.html";
@@ -378,8 +380,10 @@ function loadMealSummary() {
 
 function loadHostMealName() {
     var newmeal = JSON.parse(localStorage.getItem("newmeal"));
-    $("#meal_name").attr("value", newmeal["meal_name"]);
-    $("#meal_description").append(newmeal["meal_details"]);
+    if (newmeal != null) {
+        $("#meal_name").attr("value", newmeal["meal_name"]);
+        $("#meal_description").append(newmeal["meal_details"]);
+    }
 }
 
 function loadHostMealCategories() {
@@ -396,20 +400,22 @@ function loadHostMealCategories() {
     }
 }
 
-function loadPreferences (){
+function loadPreferences() {
     var preferences = JSON.parse(localStorage.getItem("preferences"));
-    var list = preferences["meal_categories"];
-    var table = document.getElementById("meal_categories");
-    var items = table.getElementsByTagName("li")
+    if (preferences != null) {
+        var list = preferences["meal_categories"];
+        var table = document.getElementById("meal_categories");
+        var items = table.getElementsByTagName("li")
 
-    for(var i = 0; i < list.length; i++) {
-        var x = items[i].getElementsByTagName("div");
-        if(list[i]) {
-            x[0].classList.add("active");
+        for(var i = 0; i < list.length; i++) {
+            var x = items[i].getElementsByTagName("div");
+            if(list[i]) {
+                x[0].classList.add("active");
+            }
         }
+        $("#num_guests").val(preferences["num_guests"]);
+        $("#cost").val(preferences["cost"]);
     }
-    $("#num_guests").val(preferences["num_guests"]);
-    $("#cost").val(preferences["cost"]);
 }
 
 function loadHostMealDate() {
@@ -459,7 +465,6 @@ var checkPage = function(){
     if($("#guest-reservation-detail").length) {
         addMealDetailsHTML();
         $("#back-button").click(function() {
-            console.log("going back");
             history.go(-1);
         });
         $("#rsvp-cancel").click(function() {

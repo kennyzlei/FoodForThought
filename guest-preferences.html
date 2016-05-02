@@ -7,44 +7,43 @@
 
     <link href="ratchet/css/ratchet.min.css" rel="stylesheet">
     <link href="ratchet/css/ratchet-theme-ios.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
     <script src="ratchet/js/ratchet.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
     <script src="app.js"></script>
   </head>
 
   <body>
-
     <header class="bar bar-nav">
       <button class="btn btn-link btn-nav pull-left" id="back-button">
-          <span class="icon icon-left-nav"></span>
-          Back
-      </button>
+            <span class="icon icon-left-nav"></span>
+            Back
+        </button>
       <h1 class="title">Preferences</h1>
     </header>
 
-    <div class= "content" id="guest-preferences">
+    <div class="content" id="guest-preferences">
       <div class="content-padded">
 
-        <ul style="position: relative; top: 30px; margin-left: auto; margin-right: auto; display: block;" class="table-view">
+        <ul class="table-view">
           <li class="table-view-cell">
             <a href="../guest-dietary-preferences.html" class="navigate-right">
-              Dietary Restrictions
-            </a>
+                Dietary Restrictions
+              </a>
           </li>
         </ul>
 
-        <p style="position: relative; top: 70px; margin-left: auto; margin-right: auto; width: 10em;"> Food Types: </p>
-        <div style="position: relative; top: 70px; margin-left: auto; margin-right: auto; width: 10em;">
-        <ul id = "meal_categories" class="table-view">
+        <h5>Food Types:</h5>
+        <ul id="meal_categories" class="table-view">
           <li class="table-view-cell">
-          American
+            American
             <div class="toggle">
               <div class="toggle-handle"></div>
             </div>
           </li>
           <li class="table-view-cell">
             Chinese
-            <div class="toggle active">
+            <div class="toggle">
               <div class="toggle-handle"></div>
             </div>
           </li>
@@ -73,35 +72,31 @@
             </div>
           </li>
         </ul>
-        </div>
 
-        <p style="position: relative; top: 70px; margin-left: auto; margin-right: auto; width: 10em;"> Number of People Attending: </p>
-          <div  style="position: relative; top: 70px; margin-left: auto; margin-right: auto; width: 10em;">
-            <select id= "num_guests">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="5+">5+</option>
-            </select>
-          </div>
-        <p style="position: relative; top: 70px; margin-left: auto; margin-right: auto; width: 10em;"> Budget: </p>
-          <div  style="position: relative; top: 70px; margin-left: auto; margin-right: auto; width: 10em;">
-            <select id = "cost">
-              <option value="1">$1</option>
-              <option value="2">$2</option>
-              <option value="3">$3</option>
-              <option value="4">$4</option>
-              <option value="5">$5</option>
-              <option value="6">$6</option>
-              <option value="7">$7</option>
-              <option value="8">$8</option>
-              <option value="9">$9</option>
-              <option value="10">$10</option>
-            </select>
-          </div>
-        </div>
+        <h5>Number of People Attending:</h5>
+        <select id="num_guests">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="5+">5+</option>
+        </select>
+        
+        <h5>Max Budget:</h5>
+        <select id="cost">
+          <option value="1">$1</option>
+          <option value="2">$2</option>
+          <option value="3">$3</option>
+          <option value="4">$4</option>
+          <option value="5">$5</option>
+          <option value="6">$6</option>
+          <option value="7">$7</option>
+          <option value="8">$8</option>
+          <option value="9">$9</option>
+          <option value="10" selected="selected">$10</option>
+        </select>
+      </div>
     </div>
   </body>
 </html>
