@@ -19,7 +19,6 @@ function loadStorage() {
                     reveal some of my well-kept secrets on how to glaze your meats properly ;) Also, bring your swimsuits if you
                     want to go swimming...the pool will be open!",
                     "meal_categories": [1, 1, 1, 1, 1, 1],
-                    "meal_details": "amazing meal",
                     "meal_categories": [1, 0, 0, 0, 0, 0],
                     "pic_url": "img/bbq.jpg",
                     "meal_time": "1:00 PM",
@@ -203,8 +202,7 @@ function addMealHTML(value) {
 function addMealDetailsHTML(){
     if (!isNaN(getCurrentMealID())) {
         var meal = meals["upcoming"][getCurrentMealID()];
-        $('.title').append(meal["meal_name"]);
-        var mealdetails = 'Host: ' + meal["host_name"] + "<div> <p> 2/" + meal["num_guests"] + " RSVP's </p> </div>";
+        var mealdetails = meal["meal_name"] + '<p>Host: ' + meal["host_name"] + "</p><p> 2/" + meal["num_guests"] + " RSVP's </p>";
         $('#heading').append(mealdetails);
         var mealdetails2 = '<p>' + meal["meal_details"] + '</p>';
         $('#meal_description').append(mealdetails2);
