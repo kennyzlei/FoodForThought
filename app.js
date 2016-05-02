@@ -403,8 +403,8 @@ function loadPreferences() {
 
         for(var i = 0; i < list.length; i++) {
             var x = items[i].getElementsByTagName("div");
-            if(list[i]) {
-                x[0].classList.add("active");
+            if(!list[i]) {
+                x[0].classList.remove("active");
             }
         }
         $("#num_guests").val(preferences["num_guests"]);
